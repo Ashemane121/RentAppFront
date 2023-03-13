@@ -12,24 +12,6 @@ export class HeaderComponent implements OnInit{
 
   constructor(private service: AuthService, private toastr: ToastrService) { }
 
-  /*ngOnInit() {
-    // subscribe to the tokenChanged event
-    this.authService.tokenChanged.subscribe(() => {
-      // update the isLoggedIn property
-      this.isLoggedIn = this.authService.IsLoggedIn();
-    });
-    // initialize the isLoggedIn property
-    this.isLoggedIn = this.authService.IsLoggedIn();
-  }
-
-  Logout() {
-    const token = sessionStorage.getItem('token');
-    if (token !== null) {
-      this.authService.Logout(token);
-      //sessionStorage.removeItem('token');
-    }
-    console.log(sessionStorage.getItem('token'))
-  }*/
   ngOnInit(): void {
     this.service.refreshComponent$.subscribe(() => {
       if (this.service.IsLoggedIn()) {

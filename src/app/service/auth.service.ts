@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { tap,map,catchError } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
 
 
 @Injectable({
@@ -40,28 +40,32 @@ export class AuthService {
     return this.http.post(`${this.apiurl}/logout`, {}, { headers });
   }
 
-  GetUserbyCode(id:any){
-    return this.http.get(this.apiurl+'/'+id);
+  Update(inputdata: any, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiurl}/update`, inputdata, { headers });
   }
-  Getall(){
-    return this.http.get(this.apiurl);
+  UpdateEmail(inputdata: any, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiurl}/updateEmail`, inputdata, { headers });
   }
-  updateuser(id:any,inputdata:any){
-    return this.http.put(this.apiurl+'/'+id,inputdata);
+  UpdatePassword(inputdata: any, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiurl}/updatePassword`, inputdata, { headers });
   }
-  getuserrole(){
-    return this.http.get('http://localhost:3000/role');
+
+  getUserByEmail(email: string) {
+    return this.http.get(`${this.apiurl}/user?email=${email}`);
   }
+  checkEmail(email: string) {
+    return this.http.get(`${this.apiurl}/checkEmail?email=${email}`, { observe: 'response' })
+      .pipe(map(response => response.status === 200));
+  }
+  checkAdmin(email: string) {
+    return this.http.get(`${this.apiurl}/checkAdmin?email=${email}`, { observe: 'response' })
+      .pipe(map(response => response.status === 200));
+  }
+
   IsLoggedIn(){
     return sessionStorage.getItem('token')!=null;
-  }
-  getrole(){
-    return sessionStorage.getItem('role')!=null?sessionStorage.getItem('role')?.toString():'';
-  }
-  GetAllCustomer(){
-    return this.http.get('http://localhost:3000/customer');
-  }
-  Getaccessbyrole(role:any,menu:any){
-    return this.http.get('http://localhost:3000/roleaccess?role='+role+'&menu='+menu)
   }
 }
