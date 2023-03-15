@@ -53,14 +53,19 @@ export class AuthService {
     return this.http.post(`${this.apiurl}/updatePassword`, inputdata, { headers });
   }
 
-  getUserByEmail(email: string) {
-    return this.http.get(`${this.apiurl}/user?email=${email}`);
+  GetUserByEmail(email: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiurl}/user?email=${email}`, { headers });
+}
+  GetUsers(adminEmail: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiurl}/users?adminEmail=${adminEmail}`, { headers });
   }
-  checkEmail(email: string) {
+  CheckEmail(email: string) {
     return this.http.get(`${this.apiurl}/checkEmail?email=${email}`, { observe: 'response' })
       .pipe(map(response => response.status === 200));
   }
-  checkAdmin(email: string) {
+  CheckAdmin(email: string) {
     return this.http.get(`${this.apiurl}/checkAdmin?email=${email}`, { observe: 'response' })
       .pipe(map(response => response.status === 200));
   }
