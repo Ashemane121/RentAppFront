@@ -25,16 +25,31 @@ export class RegisterComponent {
     password: this.builder.control('', Validators.compose([Validators.required])),
   })
 
+  getCurrentUser(email:any, token:any){
+    this.service.GetUserByEmail(email,token).subscribe(
+      (response:any) => {
+        sessionStorage.setItem('userId', response.id)
+        sessionStorage.setItem('userEmail', response.email)
+        /*add the rest of the user's informations here
+        *
+        *
+        * 
+        * 
+        */
+      }
+    )
+  }
+
   proceedregister() {
     if (this.registerform.valid) {
       this.service.RegisterUser(this.registerform.value).subscribe((response:any) => {
         this.toastr.success('Please verify your account.','Registered successfully')
         sessionStorage.setItem('token', response.token)
+        this.getCurrentUser(this.registerform.get('email')?.value, sessionStorage.getItem('token'))
         this.service.refresh()
         // testing if token exists
           const token = sessionStorage.getItem('token');
           console.log(token);
-
         this.router.navigate(['home'])
       });
     } else {

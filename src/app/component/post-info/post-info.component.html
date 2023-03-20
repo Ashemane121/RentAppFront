@@ -1,0 +1,29 @@
+<mat-card class="post-card">
+    <mat-card-header>
+        <mat-card-title>{{ currentPost.brand }}</mat-card-title>
+        <mat-card-subtitle>{{ currentPost.model }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{ currentPost.mileage }}</p>
+        <p>{{ currentPost.year }}</p>
+        <p>{{ currentPost.description }}</p>
+        <p>{{ currentPost.gearbox }}</p>
+        <p>{{ currentPost.fuel }}</p>
+        <p>{{ currentPost.price }}</p>
+        <p>{{ currentPost.availability }}</p>
+        <p>{{ currentPost.start_date }}</p>
+        <p>{{ currentPost.end_date }}</p>
+    </mat-card-content>
+    
+    <button mat-flat-button color="basic" (click)="CheckSessionStorage()">
+        Test
+    </button>
+   
+    <button mat-flat-button color="basic" *ngIf="!isLoggedIn" routerLink="/login">
+        Login
+    </button>
+    <button mat-flat-button color="basic" *ngIf="isLoggedIn && !isOwned" routerLink="/posts">
+        Rent
+    </button>
+</mat-card>
+  

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +14,34 @@ export class PostService {
     return this.http.get<any>(`${this.apiurl}/get/all`);
   }
 
-  GetPostById(postId: number): Observable<any> {
+  GetPostById(postId: any): Observable<any> {
     return this.http.get<any>(`${this.apiurl}/get/${postId}`);
   }
 
-  AddPost(userId: number, post: any): Observable<any> {
-    return this.http.post<any>(`${this.apiurl}/${userId}`, post);
+  AddPost(userId: any, post: any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.apiurl}/${userId}`, post, { headers });
   }
 
-  UpdatePost(postId: number, post: any): Observable<any> {
-    return this.http.put<any>(`${this.apiurl}/${postId}`, post);
+  UpdatePost(postId: any, post: any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>(`${this.apiurl}/${postId}`, post, { headers });
   }
 
-  DeletePost(postId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiurl}/${postId}`);
+  DeletePost(postId: any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.apiurl}/${postId}`, { headers });
   }
   
-  GetPostsByUserId(userId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiurl}/user/${userId}`);
+  GetPostsByUserId(userId: any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiurl}/user/${userId}`, { headers });
+  }
+
+  GetPostsIdByUserId(userId: any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiurl}/user/${userId}`, { headers }).pipe(
+      map((posts: any[]) => posts.map(post => post.id_post))
+    );
   }
 }

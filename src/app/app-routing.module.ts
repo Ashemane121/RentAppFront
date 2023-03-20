@@ -3,7 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
-import { PostlistingComponent } from './component/postlisting/postlisting.component';
+import { PostListingComponent } from './component/post-listing/post-listing.component';
+import { PostCreateComponent } from './component/post-create/post-create.component';
+import { PostEditComponent } from './component/post-edit/post-edit.component';
+import { PostOwnedComponent } from './component/post-owned/post-owned.component';
+import { PostInfoComponent } from './component/post-info/post-info.component';
 import { RegisterComponent } from './component/register/register.component';
 import { AdminRegisterComponent } from './component/admin-register/admin-register.component';
 import { AdminLoginComponent } from './component/admin-login/admin-login.component';
@@ -16,8 +20,12 @@ const routes: Routes = [
   {path:'admin/register', component:AdminRegisterComponent},
   {path:'admin/login', component:AdminLoginComponent},
   {path:'admin/dashboard', component:AdminDashboardComponent},
-  {path:'post', component:PostlistingComponent},
-  {path:'home', component:HomeComponent, canActivate:[AuthGuard]}
+  {path:'posts', component:PostListingComponent},
+  {path:'posts/add', component:PostCreateComponent, canActivate:[AuthGuard]},
+  {path:'posts/owned', component:PostOwnedComponent, canActivate:[AuthGuard]},
+  {path:'posts/edit/:id', component:PostEditComponent, canActivate:[AuthGuard]},
+  {path:'posts/info/:id', component:PostInfoComponent},
+  {path:'home', component:HomeComponent}
 ];
 
 @NgModule({

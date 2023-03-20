@@ -1,0 +1,22 @@
+<mat-card class="post-card" *ngFor="let post of myPosts">
+    <mat-card-header>
+        <mat-card-title>{{ post.brand }}</mat-card-title>
+        <mat-card-subtitle>{{ post.model }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{ post.price }}</p>
+        <p>{{ post.availability }}</p>
+        <p>{{ post.start_date }}</p>
+        <p>{{ post.end_date }}</p>
+        <button mat-flat-button color="basic" [routerLink]="['/posts/info', post.id_post]">
+            Afficher
+        </button>
+        <button mat-flat-button color="basic" [routerLink]="['/posts/edit', post.id_post]">
+            Modifier
+        </button>
+        <button mat-flat-button color="danger">
+            Supprimer
+        </button> 
+    </mat-card-content>
+  </mat-card>
+  

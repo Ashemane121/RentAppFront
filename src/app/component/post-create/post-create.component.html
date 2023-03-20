@@ -1,0 +1,61 @@
+<mat-card>
+    <mat-card-header>
+        <h2>Ajouter une annonce</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-form" [formGroup]="postForm" (ngSubmit)="AddPost()">
+            <mat-form-field class="example-full-width">
+                <mat-label>brand</mat-label>
+                <input matInput formControlName="brand" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>model</mat-label>
+                <input matInput formControlName="model" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>mileage</mat-label>
+                <input matInput formControlName="mileage" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>year</mat-label>
+                <input matInput formControlName="year" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>description</mat-label>
+                <input matInput formControlName="description" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>gearbox</mat-label>
+                <input matInput formControlName="gearbox" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>fuel</mat-label>
+                <input matInput formControlName="fuel" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>price</mat-label>
+                <input matInput formControlName="price" >
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Start date</mat-label>
+                <input matInput [matDatepicker]="startPicker" placeholder="Choose a date" formControlName="start_date">
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+              
+            <mat-form-field>
+                <mat-label>End date</mat-label>
+                <input matInput [matDatepicker]="endPicker" placeholder="Choose a date" formControlName="end_date">
+                <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+            
+            
+            <div>
+                <button mat-raised-button color="primary">Submit</button>
+                <a routerLink="/posts" mat-raised-button color="accent">Liste des annonces</a>
+            </div>
+        </form>
+    </mat-card-content>
+  </mat-card>
+

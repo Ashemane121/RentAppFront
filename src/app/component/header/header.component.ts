@@ -8,9 +8,9 @@ import { ToastrService } from 'ngx-toastr'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
-  isLoggedIn = false;
-
+  
   constructor(private service: AuthService, private toastr: ToastrService) { }
+  isLoggedIn=false
 
   ngOnInit(): void {
     this.service.refreshComponent$.subscribe(() => {
@@ -22,6 +22,14 @@ export class HeaderComponent implements OnInit{
       console.log('refreshed header')
       // Add the code here that you want to execute when the event is emitted
     });
+
+    if (sessionStorage.getItem('token')) {
+      console.log('logged in')
+      this.isLoggedIn = true;
+    } else {
+      console.log('not logged in')
+      this.isLoggedIn = false;
+    }
   }
 
   Logout() {
@@ -35,6 +43,13 @@ export class HeaderComponent implements OnInit{
         location.reload();
       });
     }
+  }
+
+  CheckSessionStorage() {
+    console.log('this is for testing purposes, this is the current token and user if exists :')
+    console.log(sessionStorage.getItem('token'))
+    console.log(sessionStorage.getItem('userId'))
+    console.log(sessionStorage.getItem('userEmail'))
   }
 
 

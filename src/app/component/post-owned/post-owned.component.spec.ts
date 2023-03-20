@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostlistingComponent } from './postlisting.component';
+import { PostOwnedComponent } from './post-owned.component';
 
-describe('PostlistingComponent', () => {
-  let component: PostlistingComponent;
-  let fixture: ComponentFixture<PostlistingComponent>;
+describe('PostOwnedComponent', () => {
+  let component: PostOwnedComponent;
+  let fixture: ComponentFixture<PostOwnedComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostlistingComponent ]
+      declarations: [ PostOwnedComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostlistingComponent);
+    fixture = TestBed.createComponent(PostOwnedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
