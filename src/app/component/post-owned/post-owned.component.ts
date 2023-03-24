@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from 'src/app/service/post.service';
+import { PostService } from 'src/app/service/post/post.service';
 
 @Component({
   selector: 'app-post-owned',

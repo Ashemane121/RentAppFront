@@ -44,4 +44,14 @@ export class PostService {
       map((posts: any[]) => posts.map(post => post.id_post))
     );
   }
+
+  PostOwned(postId: any): Observable<boolean> {
+    return this.GetPostsIdByUserId(sessionStorage.getItem('userId'), sessionStorage.getItem('token'))
+      .pipe(
+        map(response => {
+          const myPostsId = response
+          return myPostsId.includes(postId)
+        })
+      );
+  }
 }

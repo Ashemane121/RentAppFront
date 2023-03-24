@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PostService } from 'src/app/service/post.service';
+import { PostService } from 'src/app/service/post/post.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { ToastrService } from 'ngx-toastr'
 
@@ -40,26 +40,22 @@ export class PostInfoComponent {
   }
 
   ngOnInit() {
-    //checks if the user is logged in
-    if (this.authService.IsLoggedIn()) {
-      this.isLoggedIn = true;
-      //checks if the current user owns the post
-      this.postService.GetPostsIdByUserId(sessionStorage.getItem('userId'), sessionStorage.getItem('token')).subscribe(response => {
-        const myPostsId = response;
-        if (myPostsId.includes(this.id)) {
-          this.isOwned=true
-        } else {
-          this.isOwned=false
-        }
-      });
-    } else {
-      this.isLoggedIn = false;
-    }
-    //fetchs post data
     this.route.paramMap.subscribe(params => {
       const id = params.get('id')
       if (id!==null){
         this.id = +id;
+        //checks if the user is logged in
+        if (this.authService.IsLoggedIn()) {
+          this.isLoggedIn = true;
+          //checks if the current user owns the post
+          this.postService.PostOwned(this.id).subscribe(isOwned => {
+            this.isOwned = isOwned;
+            console.log('is owned = ', isOwned)
+          });
+        } else {
+          this.isLoggedIn = false;
+        }
+        //fetchs post data
         this.postService.GetPostById(this.id).subscribe((response:any) => {
           this.currentPost=response
         });

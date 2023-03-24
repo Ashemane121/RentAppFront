@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PostService } from 'src/app/service/post.service';
+import { PostService } from 'src/app/service/post/post.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { ToastrService } from 'ngx-toastr'
 
