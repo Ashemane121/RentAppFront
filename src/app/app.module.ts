@@ -23,6 +23,9 @@ import { PostCreateComponent } from './component/post-create/post-create.compone
 import { PostOwnedComponent } from './component/post-owned/post-owned.component';
 import { PostEditComponent } from './component/post-edit/post-edit.component';
 import { PostInfoComponent } from './component/post-info/post-info.component';
+import { RentalCreateComponent } from './component/rental-create/rental-create.component';
+import { RentalOwnedComponent } from './component/rental-owned/rental-owned.component';
+import { RentalInfoComponent } from './component/rental-info/rental-info.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { PostInfoComponent } from './component/post-info/post-info.component';
     PostCreateComponent,
     PostOwnedComponent,
     PostEditComponent,
-    PostInfoComponent
+    PostInfoComponent,
+    RentalCreateComponent,
+    RentalOwnedComponent,
+    RentalInfoComponent
   ],
   imports: [
     BrowserModule,

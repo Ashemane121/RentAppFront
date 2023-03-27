@@ -16,8 +16,9 @@ export class RentalService {
     return this.http.get<any>(`${this.apiurl}/requests`);
   }
 
-  GetRequestById(requestId: any): Observable<any> {
-    return this.http.get<any>(`${this.apiurl}/requests/${requestId}`);
+  GetRequestById(requestId: any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiurl}/requests/${requestId}`, { headers });
   }
 
   GetRequestsByUserId(userId: any, token: any): Observable<any> {
@@ -33,6 +34,11 @@ export class RentalService {
   GetRequestsByStatus(status: any, token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.apiurl}/requests/status/${status}`, { headers });
+  }
+
+  GetPostById(requestId: any, token: any): Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiurl}/requests/${requestId}/post`, { headers });;
   }
 
   AddRequest(userId: any, postId: any, request: any, token: any): Observable<any> {

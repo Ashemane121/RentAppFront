@@ -1,0 +1,34 @@
+<mat-card>
+    <mat-card-header>
+        <h2>Louez cette voiture</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-form" [formGroup]="requestForm" (ngSubmit)="AddRequest()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Methode de payement :</mat-label>
+                <input matInput formControlName="payment_method" >
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Start date</mat-label>
+                <input matInput [matDatepicker]="startPicker" placeholder="Choose a date" formControlName="start_date">
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+              
+            <mat-form-field>
+                <mat-label>End date</mat-label>
+                <input matInput [matDatepicker]="endPicker" placeholder="Choose a date" formControlName="end_date">
+                <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+            
+            
+            <div>
+                <button mat-raised-button color="primary">Submit</button>
+                <a [routerLink]="['/posts/info', postId]" mat-raised-button color="accent">Retour</a>
+            </div>
+        </form>
+    </mat-card-content>
+  </mat-card>
+

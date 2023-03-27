@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PostService } from 'src/app/service/post/post.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { RentalService } from 'src/app/service/rental/rental.service';
 import { ToastrService } from 'ngx-toastr'
 
 @Component({
-  selector: 'app-post-info',
-  templateUrl: './post-info.component.html',
-  styleUrls: ['./post-info.component.css']
+  selector: 'app-rental-info',
+  templateUrl: './rental-info.component.html',
+  styleUrls: ['./rental-info.component.css']
 })
-export class PostInfoComponent {
+export class RentalInfoComponent implements OnInit{
   id: number = 0
-  currentPost:any = {
+  request:any = {
+    payment_method:'',
+    status:'',
+    start_date:'',
+    end_date:''
+  }
+  post:any = {
     brand:'',
     model:'',
     mileage:'',
@@ -25,12 +31,11 @@ export class PostInfoComponent {
     end_date:''
   }
   isLoggedIn=false
-  isOwned=false
 
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
-    private postService: PostService,
+    private rentalService: RentalService,
     private router: Router,
     private toastr: ToastrService
   ) {
@@ -45,30 +50,24 @@ export class PostInfoComponent {
         //checks if the user is logged in
         if (this.authService.IsLoggedIn()) {
           this.isLoggedIn = true;
-          //checks if the current user owns the post
-          this.postService.PostOwned(this.id).subscribe(isOwned => {
-            this.isOwned = isOwned;
-            console.log('is owned = ', isOwned)
-          });
         } else {
           this.isLoggedIn = false;
         }
+        //fetchs request data
+        this.rentalService.GetRequestById(this.id, sessionStorage.getItem('token')).subscribe((response:any) => {
+          this.request=response
+        })
         //fetchs post data
-        this.postService.GetPostById(this.id).subscribe((response:any) => {
-          this.currentPost=response
+        this.rentalService.GetPostById(this.id, sessionStorage.getItem('token')).subscribe((response:any) => {
+          this.post=response
         });
       } else {
-        this.toastr.error('Annonce introuvable')
-        this.router.navigate(['posts'])
+        this.toastr.error('Demande de location introuvable')
+        this.router.navigate(['rental/owned'])
       }
     });
     
   }
 
-  CheckSessionStorage(){
-    console.log('id : ',this.id)
-    console.log('current post : ',this.currentPost)
-    console.log('am i logged in ? : ',this.isLoggedIn)
-    console.log('do i own this ? : ',this.isOwned)
-  }
+
 }

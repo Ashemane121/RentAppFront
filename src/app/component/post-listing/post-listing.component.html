@@ -1,15 +1,12 @@
-<mat-card class="post-card" *ngFor="let post of posts">
+<mat-card class="post-card" *ngFor="let post of posts" [routerLink]="['/posts/info', post.id_post]">
+  <div class="post-card-img">
+
+  </div>
   <mat-card-header>
-    <mat-card-title>{{ post.brand }}</mat-card-title>
-    <mat-card-subtitle>{{ post.model }}</mat-card-subtitle>
+    <mat-card-title>{{ post.brand }} {{ post.model }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p>{{ post.mileage }}</p>
-    <p>{{ post.year }}</p>
-    <p>{{ post.description }}</p>
-    <p>{{ post.gearbox }}</p>
-    <p>{{ post.fuel }}</p>
-    <p>{{ post.price }}</p>
+    <p>{{ post.price }}dt</p>
     <p>{{ post.availability }}</p>
     <p>{{ post.start_date }}</p>
     <p>{{ post.end_date }}</p>

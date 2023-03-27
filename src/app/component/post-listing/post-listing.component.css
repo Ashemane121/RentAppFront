@@ -1,6 +1,13 @@
 .post-card {
-    width: calc(33.33% - 10px); /* subtract 10px for margin */
-    margin-right: 10px;
-    margin-bottom: 10px;
-    display: inline-block;
-  }
+  width: calc(33.33% - 10px); /* subtract 10px for margin */
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  border-radius: 15px;
+}
+
+.post-card-img {
+  width:100%;
+  height:150px;
+  background-color: aquamarine;
+}
