@@ -86,6 +86,13 @@ export class RentalService {
     return this.http.delete<any>(`${this.apiurl}/rentals/${rentalId}`, { headers });
   }
   
+  // Create a rental from a request
+  CreateRequest(requestId: any, request: any, rental: any, token: any) {
+    //Update request status to approuved
+    this.UpdateRequest(requestId, request, token)
+    //create rental
+    this.AddRental(requestId, rental, token)
+  }
   
 
 

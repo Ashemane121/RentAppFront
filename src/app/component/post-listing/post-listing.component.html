@@ -1,17 +1,83 @@
-<mat-card class="post-card" *ngFor="let post of posts" [routerLink]="['/posts/info', post.id_post]">
-  <div class="post-card-img">
-
+<div class="main">
+  <div class="upper-filter">
+    <div class="upper-filter-loc">
+      <input type="text" id="localisation" name="localisation" placeholder="Localisation">
+    </div>
+    <div class="upper-filter-date">
+      <input type="text" id="start-date" name="start-date" placeholder="Date de Début">
+    </div>
+    <div class="upper-filter-date">
+      <input type="text" id="end-date" name="end-date" placeholder="Date de Fin">
+    </div>
   </div>
-  <mat-card-header>
-    <mat-card-title>{{ post.brand }} {{ post.model }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>{{ post.price }}dt</p>
-    <p>{{ post.availability }}</p>
-    <p>{{ post.start_date }}</p>
-    <p>{{ post.end_date }}</p>
-    <button mat-flat-button color="basic" [routerLink]="['/posts/info', post.id_post]">
-      Afficher
-    </button>
-  </mat-card-content>
-</mat-card>
+  
+  <div class="side-bar">
+    <form>
+      <h3>Marque</h3>
+      <div class="checkboxes">
+        <input type="checkbox" id="brand1" class="my-checkbox">
+        <label for="brand1" class="my-label">BMW</label>
+
+        <input type="checkbox" id="brand2" class="my-checkbox">
+        <label for="brand2" class="my-label">Mercedes</label>
+
+        <input type="checkbox" id="brand3" class="my-checkbox">
+        <label for="brand3" class="my-label">Audi</label>
+
+        <input type="checkbox" id="brand4" class="my-checkbox">
+        <label for="brand4" class="my-label">Peugeot</label>
+
+        <input type="checkbox" id="brand5" class="my-checkbox">
+        <label for="brand5" class="my-label">Renault</label>
+
+        <input type="checkbox" id="brand6" class="my-checkbox">
+        <label for="brand6" class="my-label">Citroen</label>
+      </div>
+      <div class="filter-seperation"></div>
+      <h3>Boite de vitesse</h3>
+      <div class="checkboxes">
+        <input type="checkbox" id="checkbox1" class="my-checkbox">
+        <label for="checkbox1" class="my-label">Automatique</label>
+
+        <input type="checkbox" id="checkbox2" class="my-checkbox">
+        <label for="checkbox2" class="my-label">Manuelle</label>
+      </div>
+      <div class="filter-seperation"></div>
+      <h3>Moteur</h3>
+      <div class="checkboxes">
+        <input type="checkbox" id="checkbox1" class="my-checkbox">
+        <label for="checkbox1" class="my-label">Essence</label>
+
+        <input type="checkbox" id="checkbox2" class="my-checkbox">
+        <label for="checkbox2" class="my-label">Electrique</label>
+
+        <input type="checkbox" id="checkbox2" class="my-checkbox">
+        <label for="checkbox2" class="my-label">Hybride</label>
+      </div>
+      
+
+    </form>
+  </div>
+  <div class="posts-list">
+    <div class="post-card" *ngFor="let post of posts" [routerLink]="['/posts/info', post.id_post]">
+      <div class="post-card-content">
+        <div class="post-card-img">
+      
+        </div>
+        <div class="post-card-info">
+          <h2>{{ post.brand }} {{ post.model }}</h2>
+          <div class="post-card-details">
+            <div class="post-card-text">
+              <p>Aucune évaluation</p>
+            </div>
+            <div class="post-card-price">
+              <h3>{{ post.price }}dt</h3>
+              <p>/jour</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

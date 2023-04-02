@@ -1,13 +1,142 @@
-.post-card {
-  width: calc(33.33% - 10px); /* subtract 10px for margin */
-  margin-right: 10px;
+.main{
+  margin-left: 12%;
+  margin-right: 12%;
+  display: grid;
+  grid-template-columns: 4fr 6fr 6fr;
+  grid-template-areas: 
+      'upper upper upper'
+      'filter list list';
+  grid-gap: 1em;
+}
+/*upper search filter*/
+.upper-filter {
+  grid-area: upper;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-gap: 2em;
+}
+.upper-filter-loc {
+}
+.upper-filter-date {
+}
+.upper-filter input {
+  border: solid 2px #ccc;
+  border-radius: 10px;
+  width:100%;
+  height: 40px;
+}
+
+/*side bar*/
+.side-bar{
+  grid-area: filter;
+  height:fit-content;
+  border-radius: 25px;
+  padding: 10px;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.side-bar h3{
+  margin-left:20px;
+  font-weight:bold;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.filter-seperation{
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
   margin-bottom: 10px;
-  display: inline-block;
-  border-radius: 15px;
+  width:100%;
+}
+
+/*checkboxes*/
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+}
+.my-checkbox {
+  display: none; /* hide the checkbox */
+}
+.my-label {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 20px;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  height:20px;
+}
+.my-checkbox:checked + .my-label {/* style the label when checkbox is checked */
+  background-color: rgb(250, 253, 232);
+}
+
+/*posts*/
+.posts-list{
+  grid-area: list;
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+}
+
+.post-card {
+  cursor: pointer;
+}
+
+.post-card-content {
+  border-radius: 20px;
+  overflow: hidden;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+}
+.post-card-content:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .post-card-img {
   width:100%;
-  height:150px;
-  background-color: aquamarine;
+  height:200px;
+  background-color: rgb(51, 159, 123);
 }
+
+.post-card-info {
+  padding: 0px 15px 15px 15px;
+  height: 110px;
+}
+.post-card-info h2 {
+  display: block;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+.post-card-details {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* center the child elements vertically */
+}
+
+.post-card-price {
+  width: 100px;
+  height: 60px;
+  border-radius: 15px;
+  border: solid 1px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  text-align: center;
+  margin-right: 10px; /* add some margin to separate from the text div */
+}
+
+.post-card-price h3 {
+  margin: 5px 0px 0px 0px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-card-text {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+

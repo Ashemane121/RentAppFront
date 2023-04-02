@@ -1,8 +1,6 @@
-<mat-card>
-    <mat-card-header>
-        <h2>Registeration</h2>
-    </mat-card-header>
-    <mat-card-content>
+<main>
+    <div class="container">
+        <h2>Créer un compte</h2>
         <form class="example-form" [formGroup]="registerform" (ngSubmit)="proceedregister()">
             <mat-form-field class="example-full-width">
                 <mat-label>First Name</mat-label>
@@ -25,6 +23,6 @@
                 <a routerLink="/login" mat-raised-button color="accent">Back to Login</a>
             </div>
         </form>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </main>
 
