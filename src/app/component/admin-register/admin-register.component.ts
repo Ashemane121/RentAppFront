@@ -28,12 +28,9 @@ export class AdminRegisterComponent {
       (response:any) => {
         sessionStorage.setItem('userId', response.id)
         sessionStorage.setItem('userEmail', response.email)
-        /*add the rest of the user's informations here
-        *
-        *
-        * 
-        * 
-        */
+        sessionStorage.setItem('userRole', response.role)
+        this.service.refresh()
+        this.router.navigate(['admin/dashboard'])
       }
     )
   }
@@ -44,8 +41,6 @@ export class AdminRegisterComponent {
         this.toastr.success('Admin registered successfully')
         sessionStorage.setItem('token', response.token)
         this.getCurrentUser(this.registerform.get('email')?.value, sessionStorage.getItem('token'))
-        this.service.refresh()
-        this.router.navigate(['admin/dashboard'])
       });
     } else {
       this.toastr.warning('Please enter valid data.')

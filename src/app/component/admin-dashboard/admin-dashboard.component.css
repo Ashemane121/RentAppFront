@@ -1,0 +1,33 @@
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 100%;
+    height: 100vh;
+}
+  
+.main-content {
+    padding: 10px;
+}
+
+.sidebar {
+    background-color: #eee;
+  }
+  
+button {
+    background: transparent;
+    color: #555;
+    border: none;
+    margin:0px;
+    width:100%;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+  
+button:hover {
+    background-color: #ddd;
+}
+  

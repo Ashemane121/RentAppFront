@@ -1,1 +1,12 @@
-<p>admin-dashboard works!</p>
+<div class="dashboard-container">
+    <div class="sidebar">
+      <!-- Sidebar content goes here -->
+      <button (click)="changeComponent('users')">Utilisateurs</button>
+      <button (click)="changeComponent('posts')">Annonces</button>
+      <button (click)="changeComponent('requests')">Demandes de locations</button>
+      <!-- ... -->
+    </div>
+    <div class="main-content">
+      <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+    </div>
+</div>

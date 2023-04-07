@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
+import { AdminAuthGuard } from './guard/admin-auth.guard';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { PostListingComponent } from './component/post-listing/post-listing.component';
@@ -18,11 +19,12 @@ import { RentalOwnedComponent } from './component/rental-owned/rental-owned.comp
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
+  {path:'home', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'login', component:LoginComponent},
   {path:'admin/register', component:AdminRegisterComponent},
   {path:'admin/login', component:AdminLoginComponent},
-  {path:'admin/dashboard', component:AdminDashboardComponent},
+  {path:'admin/dashboard', component:AdminDashboardComponent, canActivate:[AdminAuthGuard]},
   {path:'posts', component:PostListingComponent},
   {path:'posts/add', component:PostCreateComponent, canActivate:[AuthGuard]},
   {path:'posts/owned', component:PostOwnedComponent, canActivate:[AuthGuard]},
@@ -30,8 +32,7 @@ const routes: Routes = [
   {path:'posts/info/:id', component:PostInfoComponent},
   {path:'rental/owned', component:RentalOwnedComponent, canActivate:[AuthGuard]},
   {path:'rental/create/:id', component:RentalCreateComponent, canActivate:[AuthGuard]},
-  {path:'rental/info/:id', component:RentalInfoComponent, canActivate:[AuthGuard]},
-  {path:'home', component:HomeComponent}
+  {path:'rental/info/:id', component:RentalInfoComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({

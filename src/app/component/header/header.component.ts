@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth/auth.service';
 import { ToastrService } from 'ngx-toastr'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -9,26 +10,30 @@ import { ToastrService } from 'ngx-toastr'
 })
 export class HeaderComponent implements OnInit{
   
-  constructor(private service: AuthService, private toastr: ToastrService) { }
+  constructor(
+    private service: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
   isLoggedIn=false
+  userRole:any
 
   ngOnInit(): void {
     this.service.refreshComponent$.subscribe(() => {
       if (this.service.IsLoggedIn()) {
         this.isLoggedIn = true;
+        this.userRole=sessionStorage.getItem('userRole')
       } else {
         this.isLoggedIn = false;
       }
       console.log('refreshed header')
-      // Add the code here that you want to execute when the event is emitted
     });
 
     if (sessionStorage.getItem('token')) {
-      console.log('logged in')
-      this.isLoggedIn = true;
+      this.isLoggedIn = true
+        this.userRole=sessionStorage.getItem('userRole')
     } else {
-      console.log('not logged in')
-      this.isLoggedIn = false;
+      this.isLoggedIn = false
     }
   }
 
@@ -38,11 +43,15 @@ export class HeaderComponent implements OnInit{
     
       this.service.Logout(token).subscribe((response:any) => {
         this.toastr.success('Logged out successfully')
-        sessionStorage.removeItem('token');
+        sessionStorage.clear()
         //this.service.refresh()
         location.reload();
       });
     }
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
   }
 
   CheckSessionStorage() {
@@ -50,6 +59,7 @@ export class HeaderComponent implements OnInit{
     console.log(sessionStorage.getItem('token'))
     console.log(sessionStorage.getItem('userId'))
     console.log(sessionStorage.getItem('userEmail'))
+    console.log(sessionStorage.getItem('userRole'))
   }
 
 

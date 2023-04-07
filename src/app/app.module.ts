@@ -9,6 +9,8 @@ import { MaterialModule } from 'src/material.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
@@ -29,6 +31,9 @@ import { PostInfoComponent } from './component/post-info/post-info.component';
 import { RentalCreateComponent } from './component/rental-create/rental-create.component';
 import { RentalOwnedComponent } from './component/rental-owned/rental-owned.component';
 import { RentalInfoComponent } from './component/rental-info/rental-info.component';
+import { AdminUsersComponent } from './component/admin-users/admin-users.component';
+import { AdminPostsComponent } from './component/admin-posts/admin-posts.component';
+import { AdminRequestsComponent } from './component/admin-requests/admin-requests.component';
 
 
 @NgModule({
@@ -48,7 +53,10 @@ import { RentalInfoComponent } from './component/rental-info/rental-info.compone
     PostInfoComponent,
     RentalCreateComponent,
     RentalOwnedComponent,
-    RentalInfoComponent
+    RentalInfoComponent,
+    AdminUsersComponent,
+    AdminPostsComponent,
+    AdminRequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +69,8 @@ import { RentalInfoComponent } from './component/rental-info/rental-info.compone
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot()

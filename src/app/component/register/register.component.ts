@@ -30,12 +30,9 @@ export class RegisterComponent {
       (response:any) => {
         sessionStorage.setItem('userId', response.id)
         sessionStorage.setItem('userEmail', response.email)
-        /*add the rest of the user's informations here
-        *
-        *
-        * 
-        * 
-        */
+        sessionStorage.setItem('userRole', response.role)
+        this.service.refresh()
+        this.router.navigate(['home'])
       }
     )
   }
@@ -46,11 +43,6 @@ export class RegisterComponent {
         this.toastr.success('Please verify your account.','Registered successfully')
         sessionStorage.setItem('token', response.token)
         this.getCurrentUser(this.registerform.get('email')?.value, sessionStorage.getItem('token'))
-        this.service.refresh()
-        // testing if token exists
-          const token = sessionStorage.getItem('token');
-          console.log(token);
-        this.router.navigate(['home'])
       });
     } else {
       this.toastr.warning('Please enter valid data.')

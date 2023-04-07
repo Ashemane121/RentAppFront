@@ -12,8 +12,9 @@ export class RentalService {
   
   // Requests apis
 
-  GetAllRequests(): Observable<any> {
-    return this.http.get<any>(`${this.apiurl}/requests`);
+  GetAllRequests(token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiurl}/requests`, { headers });
   }
 
   GetRequestById(requestId: any, token: any): Observable<any> {
@@ -58,8 +59,9 @@ export class RentalService {
 
   // Rentals apis
 
-  GetAllRentals(): Observable<any> {
-    return this.http.get<any>(`${this.apiurl}/rentals`);
+  GetAllRentals(token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.apiurl}/rentals`, { headers });
   }
 
   GetRentalById(rentalId: any): Observable<any> {

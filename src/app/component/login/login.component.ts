@@ -28,12 +28,10 @@ export class LoginComponent {
       (response:any) => {
         sessionStorage.setItem('userId', response.id)
         sessionStorage.setItem('userEmail', response.email)
-        /*add the rest of the user's informations here
-        *
-        *
-        * 
-        * 
-        */
+        sessionStorage.setItem('userRole', response.role)
+        //add the rest of the user's informations here
+        this.service.refresh()
+        this.router.navigate(['home'])
       }
     )
   }
@@ -45,11 +43,6 @@ export class LoginComponent {
           this.toastr.success('Logged in successfully')
           sessionStorage.setItem('token', response.token)
           this.getCurrentUser(this.loginform.get('email')?.value, sessionStorage.getItem('token'))
-          this.service.refresh()
-          // testing if token exists
-            const token = sessionStorage.getItem('token');
-            console.log(token);
-          this.router.navigate(['home'])
         },
         (error: any) => {
           console.error(error)

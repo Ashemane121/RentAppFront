@@ -35,42 +35,45 @@ export class AuthService {
   LoginAdmin(inputdata: any) {
     return this.http.post(`${this.apiurl}/admin/authenticate`, inputdata);
   }
-  Logout(token: string) {
+  Logout(token: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.apiurl}/logout`, {}, { headers });
   }
 
-  Update(inputdata: any, token: string) {
+  Update(inputdata: any, token: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.apiurl}/update`, inputdata, { headers });
   }
-  UpdateEmail(inputdata: any, token: string) {
+  UpdateEmail(inputdata: any, token: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.apiurl}/updateEmail`, inputdata, { headers });
   }
-  UpdatePassword(inputdata: any, token: string) {
+  UpdatePassword(inputdata: any, token: any) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.apiurl}/updatePassword`, inputdata, { headers });
   }
 
-  GetUserByEmail(email: string, token: string): Observable<any> {
+  GetUserByEmail(email: any, token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.apiurl}/user?email=${email}`, { headers });
 }
-  GetUsers(adminEmail: string, token: string): Observable<any> {
+  GetUsers(adminEmail: any, token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.apiurl}/users?adminEmail=${adminEmail}`, { headers });
+    return this.http.get(`${this.apiurl}/users?email=${adminEmail}`, { headers });
   }
-  CheckEmail(email: string) {
+  CheckEmail(email: any) {
     return this.http.get(`${this.apiurl}/checkEmail?email=${email}`, { observe: 'response' })
       .pipe(map(response => response.status === 200));
   }
-  CheckAdmin(email: string) {
+  CheckAdmin(email: any) {
     return this.http.get(`${this.apiurl}/checkAdmin?email=${email}`, { observe: 'response' })
       .pipe(map(response => response.status === 200));
   }
 
   IsLoggedIn(){
     return sessionStorage.getItem('token')!=null;
+  }
+  IsAdmin(){
+    return sessionStorage.getItem('token')!=null && sessionStorage.getItem('userRole')==='ADMIN';
   }
 }
