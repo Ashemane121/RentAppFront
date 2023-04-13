@@ -1,42 +1,31 @@
 <h1>Demandes de locations</h1>
-<mat-card class="post-card" *ngFor="let request of myPendingRequests">
-    <mat-card-header>
-        <mat-card-title>{{ request.brand }}</mat-card-title>
-        <mat-card-subtitle>{{ request.model }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
+<div class="post-card" *ngFor="let request of myPendingRequests">
+    <div>
+        <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
+    </div>
+    <div>
         <p>{{ request.status }}</p>
         <p>{{ request.payment_method }}</p>
         <p>{{ request.start_date }}</p>
         <p>{{ request.end_date }}</p>
-    </mat-card-content>
-    <mat-card-content>
-        <p>{{ request.post.brand }}</p>
-        <p>{{ request.post.model }}</p>
-    </mat-card-content>
+    </div>
     <button mat-flat-button color="basic" [routerLink]="['/rental/info', request.id_request]">
         Afficher
     </button>
-</mat-card>
+</div>
 
 <h1>Locations approuvés</h1>
-<mat-card class="post-card" *ngFor="let request of myApprouvedRequests">
-    <mat-card-header>
-        <mat-card-title>{{ request.brand }}</mat-card-title>
-        <mat-card-subtitle>{{ request.model }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
+<div class="post-card" *ngFor="let request of myApprouvedRequests">
+    <div>
+        <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
+    </div>
+    <div>
         <p>{{ request.status }}</p>
         <p>{{ request.payment_method }}</p>
         <p>{{ request.start_date }}</p>
         <p>{{ request.end_date }}</p>
-        <p>Rental : {{ request.rental.status }}</p>
-    </mat-card-content>
-    <mat-card-content>
-        <p>{{ request.post.brand }}</p>
-        <p>{{ request.post.model }}</p>
-    </mat-card-content>
+    </div>
     <button mat-flat-button color="basic" [routerLink]="['/rental/info', request.id_request]">
         Afficher
     </button>
-</mat-card>
+</div>

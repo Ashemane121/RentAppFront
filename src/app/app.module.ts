@@ -34,6 +34,8 @@ import { RentalInfoComponent } from './component/rental-info/rental-info.compone
 import { AdminUsersComponent } from './component/admin-users/admin-users.component';
 import { AdminPostsComponent } from './component/admin-posts/admin-posts.component';
 import { AdminRequestsComponent } from './component/admin-requests/admin-requests.component';
+import { AdminPostInfoComponent } from './component/admin-post-info/admin-post-info.component';
+import { AdminUserInfoComponent } from './component/admin-user-info/admin-user-info.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { AdminRequestsComponent } from './component/admin-requests/admin-request
     RentalInfoComponent,
     AdminUsersComponent,
     AdminPostsComponent,
-    AdminRequestsComponent
+    AdminRequestsComponent,
+    AdminPostInfoComponent,
+    AdminUserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,10 @@ import { AdminRequestsComponent } from './component/admin-requests/admin-request
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot()
+  ],
+  entryComponents: [
+    AdminUserInfoComponent,
+    AdminPostInfoComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

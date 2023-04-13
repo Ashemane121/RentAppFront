@@ -15,20 +15,20 @@ export class RentalInfoComponent implements OnInit{
     payment_method:'',
     status:'',
     start_date:'',
-    end_date:''
-  }
-  post:any = {
-    brand:'',
-    model:'',
-    mileage:'',
-    year:'',
-    description:'',
-    gearbox:'',
-    fuel:'',
-    price:'',
-    availability:'',
-    start_date:'',
-    end_date:''
+    end_date:'',
+    post: {
+      brand:'',
+      model:'',
+      mileage:'',
+      year:'',
+      description:'',
+      gearbox:'',
+      fuel:'',
+      price:'',
+      availability:'',
+      start_date:'',
+      end_date:''
+    }
   }
   isLoggedIn=false
 
@@ -57,10 +57,6 @@ export class RentalInfoComponent implements OnInit{
         this.rentalService.GetRequestById(this.id, sessionStorage.getItem('token')).subscribe((response:any) => {
           this.request=response
         })
-        //fetchs post data
-        this.rentalService.GetPostById(this.id, sessionStorage.getItem('token')).subscribe((response:any) => {
-          this.post=response
-        });
       } else {
         this.toastr.error('Demande de location introuvable')
         this.router.navigate(['rental/owned'])

@@ -17,20 +17,12 @@ export class RentalOwnedComponent implements OnInit {
     .subscribe(response => {
       this.myRequests = response
       this.myRequests.forEach(request => {
-        //get the post requested
-        this.rentalService.GetPostById(request.id_request, sessionStorage.getItem('token')).subscribe(response => {
-          request.post = response
-        })
         //pending requests
         if (request.status==='Pending') {
           this.myPendingRequests.push(request)
         }
         //approved requests
         if (request.status==='Approuved') {
-          //fetch rental
-          this.rentalService.GetRentalsByRequestId(request.id_request, sessionStorage.getItem('token')).subscribe(response => {
-            request.rental=response
-          })
           this.myApprouvedRequests.push(request)
         }
       })

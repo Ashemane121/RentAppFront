@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AdminUserInfoComponent } from '../admin-user-info/admin-user-info.component';
 
 @Component({
   selector: 'app-admin-users',
@@ -16,7 +18,10 @@ export class AdminUsersComponent implements OnInit{
   @ViewChild('paginator') paginator! : MatPaginator; 
   @ViewChild(MatSort) matSort! : MatSort;
 
-  constructor(private service: AuthService) {}
+  constructor(
+    private service: AuthService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.service.GetUsers(sessionStorage.getItem('userEmail'), sessionStorage.getItem('token'))
@@ -29,6 +34,15 @@ export class AdminUsersComponent implements OnInit{
 
   filterData($event : any){
     this.dataSource.filter = $event.target.value;
+  }
+
+  openUser(email: any) {
+    const dialogRef = this.dialog.open(AdminUserInfoComponent, {
+      width: '80%',
+      height: 'auto',
+      panelClass: 'custom-dialog-container',
+      data: { email: email }
+    });
   }
 
 }

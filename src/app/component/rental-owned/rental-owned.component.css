@@ -1,0 +1,28 @@
+.post-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .post-card h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .post-card p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .post-card button {
+    margin-top: 10px;
+  }
+  

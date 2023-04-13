@@ -13,6 +13,8 @@ import { RegisterComponent } from './component/register/register.component';
 import { AdminRegisterComponent } from './component/admin-register/admin-register.component';
 import { AdminLoginComponent } from './component/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './component/admin-dashboard/admin-dashboard.component';
+import { AdminPostInfoComponent } from './component/admin-post-info/admin-post-info.component';
+import { AdminUserInfoComponent } from './component/admin-user-info/admin-user-info.component';
 import { RentalCreateComponent } from './component/rental-create/rental-create.component';
 import { RentalInfoComponent } from './component/rental-info/rental-info.component';
 import { RentalOwnedComponent } from './component/rental-owned/rental-owned.component';
@@ -25,6 +27,8 @@ const routes: Routes = [
   {path:'admin/register', component:AdminRegisterComponent},
   {path:'admin/login', component:AdminLoginComponent},
   {path:'admin/dashboard', component:AdminDashboardComponent, canActivate:[AdminAuthGuard]},
+  {path:'admin/user/:email', component:AdminUserInfoComponent, canActivate:[AdminAuthGuard]},
+  {path:'admin/post/:id', component:AdminPostInfoComponent, canActivate:[AdminAuthGuard]},
   {path:'posts', component:PostListingComponent},
   {path:'posts/add', component:PostCreateComponent, canActivate:[AuthGuard]},
   {path:'posts/owned', component:PostOwnedComponent, canActivate:[AuthGuard]},

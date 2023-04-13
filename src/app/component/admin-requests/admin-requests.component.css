@@ -1,0 +1,12 @@
+.clickable:hover{
+    background-color: #eee;
+    cursor:pointer;
+    border-radius: 15px;
+    width:fit-content;
+    height:20px;
+}
+.clickable{
+    padding:5px;
+    font-weight: bold;
+    color:#555;
+}

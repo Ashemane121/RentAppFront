@@ -1,0 +1,75 @@
+<div class="main">
+    <div class="post-info-main">
+        <div class="post-info-imgs">
+
+        </div>
+        <h1>{{ currentPost.brand}} {{ currentPost.model }}</h1>
+        <p>localisation</p>
+        <p>{{ currentPost.year }}</p>
+        <p>nb de places</p>
+    </div>
+    <div class="post-info-description">
+        <h2>Description du véhicule</h2>
+        <p>{{ currentPost.description }}</p>
+    </div>
+
+    <div class="post-info-rent">
+        <div class="post-info-rent-price">
+            <h1>{{ currentPost.price }}dt</h1>
+            <p>/jour</p>
+        </div>
+        <div class="post-info-rent-button">
+            <button *ngIf="!isLoggedIn" routerLink="/login">
+                Réserver
+            </button>
+            <button *ngIf="isLoggedIn && !isOwned" [routerLink]="['/rental/create', currentPost.id_post]">
+                Réserver
+            </button>
+            <div *ngIf="isOwned">
+                <p>Il s'agit de votre véhicule</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-conditions">
+        <h2>Condition du propriétaire</h2>
+        <p>{{ currentPost.description }}</p>
+    </div>
+    <div class="post-info-details">
+        <div>
+            <h3><img src="assets/engine.png"> Moteur</h3>
+            <p>{{ currentPost.fuel }}</p>
+        </div>
+        <div>
+            <h3><img src="assets/gearbox.png"> Boite</h3>
+            <p>{{ currentPost.gearbox }}</p>
+        </div>
+        <div>
+            <h3><img src="assets/speedmeter.png"> Compteur</h3>
+            <p>{{ currentPost.mileage }}</p>
+        </div>
+    </div>
+    <div class="post-info-options">
+        <div>
+            <p>Moteur</p>
+            <p>{{ currentPost.fuel }}</p>
+        </div>
+        <div>
+            <p>Boite</p>
+            <p>{{ currentPost.gearbox }}</p>
+        </div>
+        <div>
+            <p>Compteur</p>
+            <p>{{ currentPost.mileage }}</p>
+        </div>
+    </div>
+    
+    <div class="post-info-calendar">
+        <p>Date de début :</p>
+        <p>{{ currentPost.start_date }}</p>
+        <p>Date de fin :</p>
+        <p>{{ currentPost.end_date }}</p>
+    </div>
+</div>
+
+  

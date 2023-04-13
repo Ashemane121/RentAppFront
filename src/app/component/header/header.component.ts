@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit{
         this.toastr.success('Logged out successfully')
         sessionStorage.clear()
         //this.service.refresh()
-        location.reload();
+        location.reload()
       });
     }
   }

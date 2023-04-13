@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { PostService } from 'src/app/service/post/post.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AdminPostInfoComponent } from '../admin-post-info/admin-post-info.component';
 
 @Component({
   selector: 'app-admin-posts',
@@ -17,7 +19,10 @@ export class AdminPostsComponent implements OnInit{
   @ViewChild('paginator') paginator! : MatPaginator; 
   @ViewChild(MatSort) matSort! : MatSort;
 
-  constructor(private service: AuthService, private postService: PostService) {}
+  constructor(
+    private postService: PostService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.postService.GetAllPosts()
@@ -32,4 +37,12 @@ export class AdminPostsComponent implements OnInit{
     this.dataSource.filter = $event.target.value;
   }
 
+  openPost(id: any) {
+    const dialogRef = this.dialog.open(AdminPostInfoComponent, {
+      width: '80%',
+      height: 'auto',
+      panelClass: 'custom-dialog-container',
+      data: { id: id }
+    });
+  }
 }
