@@ -1,0 +1,23 @@
+.post-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.post-card-header {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.post-card-subtitle {
+  font-size: 14px;
+  color: #999;
+}
+
+.post-card-content {
+  padding: 10px;
+}
+
+.post-card-button {
+  margin-top: 10px;
+}

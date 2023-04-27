@@ -1,0 +1,27 @@
+mat-card {
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+mat-card-header {
+  background-color: #fff;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+mat-form-field {
+  display: block;
+  margin: 1rem 0;
+}
+
+mat-form-field.example-full-width {
+  width: 100%;
+}
+
+button {
+  margin-top: 1rem;
+}
