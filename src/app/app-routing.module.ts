@@ -4,6 +4,11 @@ import { AuthGuard } from './guard/auth.guard';
 import { AdminAuthGuard } from './guard/admin-auth.guard';
 import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { UserProfileEditComponent } from './component/user-profile-edit/user-profile-edit.component';
+import { UserProfileIdentityComponent } from './component/user-profile-identity/user-profile-identity.component';
+import { UserProfilePaymentComponent } from './component/user-profile-payment/user-profile-payment.component';
+import { UserProfileSettingsComponent } from './component/user-profile-settings/user-profile-settings.component';
 import { PostListingComponent } from './component/post-listing/post-listing.component';
 import { PostCreateComponent } from './component/post-create/post-create.component';
 import { PostEditComponent } from './component/post-edit/post-edit.component';
@@ -24,6 +29,11 @@ const routes: Routes = [
   {path:'home', component:HomeComponent},
   {path:'register', component:RegisterComponent},
   {path:'login', component:LoginComponent},
+  {path:'user/profile',component:UserProfileComponent,canActivate:[AuthGuard]},
+  {path:'user/profile/edit',component:UserProfileEditComponent,canActivate:[AuthGuard]},
+  {path:'user/profile/identity',component:UserProfileIdentityComponent,canActivate:[AuthGuard]},
+  {path:'user/profile/payment',component:UserProfilePaymentComponent,canActivate:[AuthGuard]},
+  {path:'user/profile/settings',component:UserProfileSettingsComponent,canActivate:[AuthGuard]},
   {path:'admin/register', component:AdminRegisterComponent},
   {path:'admin/login', component:AdminLoginComponent},
   {path:'admin/dashboard', component:AdminDashboardComponent, canActivate:[AdminAuthGuard]},

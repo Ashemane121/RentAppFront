@@ -17,6 +17,9 @@
     <button mat-flat-button color="basic" *ngIf="!isLoggedIn" routerLink="/register">
         Register
     </button>
+    <button mat-flat-button color="basic" *ngIf="isLoggedIn" routerLink="/user/profile">
+        Profil
+    </button>
     <button mat-flat-button color="basic" *ngIf="isLoggedIn" (click)="Logout()">
         Logout
     </button>

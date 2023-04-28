@@ -36,6 +36,11 @@ import { AdminPostsComponent } from './component/admin-posts/admin-posts.compone
 import { AdminRequestsComponent } from './component/admin-requests/admin-requests.component';
 import { AdminPostInfoComponent } from './component/admin-post-info/admin-post-info.component';
 import { AdminUserInfoComponent } from './component/admin-user-info/admin-user-info.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { UserProfileEditComponent } from './component/user-profile-edit/user-profile-edit.component';
+import { UserProfileSettingsComponent } from './component/user-profile-settings/user-profile-settings.component';
+import { UserProfileIdentityComponent } from './component/user-profile-identity/user-profile-identity.component';
+import { UserProfilePaymentComponent } from './component/user-profile-payment/user-profile-payment.component';
 
 
 @NgModule({
@@ -60,7 +65,12 @@ import { AdminUserInfoComponent } from './component/admin-user-info/admin-user-i
     AdminPostsComponent,
     AdminRequestsComponent,
     AdminPostInfoComponent,
-    AdminUserInfoComponent
+    AdminUserInfoComponent,
+    UserProfileComponent,
+    UserProfileEditComponent,
+    UserProfileSettingsComponent,
+    UserProfileIdentityComponent,
+    UserProfilePaymentComponent
   ],
   imports: [
     BrowserModule,
