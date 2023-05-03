@@ -62,7 +62,7 @@
     <div class="post-card" *ngFor="let post of posts" [routerLink]="['/posts/info', post.id_post]">
       <div class="post-card-content">
         <div class="post-card-img">
-      
+          <img [src]="post.imageUrl" alt="Post Image">
         </div>
         <div class="post-card-info">
           <h2>{{ post.brand }} {{ post.model }}</h2>

@@ -5,35 +5,63 @@
     <mat-card-content>
         <form class="example-form" [formGroup]="postForm" (ngSubmit)="AddPost()">
             <mat-form-field class="example-full-width">
-                <mat-label>brand</mat-label>
-                <input matInput formControlName="brand" >
+                <mat-label>Matricule</mat-label>
+                <input matInput formControlName="mat" >
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <mat-label>model</mat-label>
+                <mat-label>Marque</mat-label>
+                <mat-select formControlName="brand">
+                    <mat-option value="BMW">BMW</mat-option>
+                    <mat-option value="AUDI">AUDI</mat-option>
+                    <mat-option value="Mercedes">Mercedes</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Modèle</mat-label>
                 <input matInput formControlName="model" >
             </mat-form-field>
+            
             <mat-form-field class="example-full-width">
-                <mat-label>mileage</mat-label>
-                <input matInput formControlName="mileage" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>year</mat-label>
+                <mat-label>Année</mat-label>
                 <input matInput formControlName="year" >
             </mat-form-field>
+
             <mat-form-field class="example-full-width">
-                <mat-label>description</mat-label>
+                <mat-label>Kilométrage</mat-label>
+                <mat-select formControlName="mileage">
+                    <mat-option value="0">0-50000</mat-option>
+                    <mat-option value="50000">50000-100000</mat-option>
+                    <mat-option value="100000">100000-150000</mat-option>
+                    <mat-option value="150000">150000+</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Boite de Vitesse</mat-label>
+                <mat-select formControlName="gearbox">
+                    <mat-option value="Automatique">Automatique</mat-option>
+                    <mat-option value="Manuelle">Manuelle</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Moteur</mat-label>
+                <mat-select formControlName="fuel">
+                    <mat-option value="Essence">Essence</mat-option>
+                    <mat-option value="Electrique">Electrique</mat-option>
+                    <mat-option value="Hybride">Hybride</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Description</mat-label>
                 <input matInput formControlName="description" >
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <mat-label>gearbox</mat-label>
-                <input matInput formControlName="gearbox" >
+                <mat-label>Conditions du Propriétaire</mat-label>
+                <input matInput formControlName="conditions" >
             </mat-form-field>
+
             <mat-form-field class="example-full-width">
-                <mat-label>fuel</mat-label>
-                <input matInput formControlName="fuel" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>price</mat-label>
+                <mat-label>Prix par Heure</mat-label>
                 <input matInput formControlName="price" >
             </mat-form-field>
             <mat-form-field>
@@ -49,13 +77,13 @@
                 <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
                 <mat-datepicker #endPicker></mat-datepicker>
             </mat-form-field>
-            
-            
+
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" multiple>
+              
             <div>
                 <button mat-raised-button color="primary">Submit</button>
                 <a routerLink="/posts" mat-raised-button color="accent">Liste des annonces</a>
             </div>
         </form>
     </mat-card-content>
-  </mat-card>
-
+</mat-card>
