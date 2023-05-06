@@ -52,13 +52,11 @@ export class PostListingComponent implements OnInit{
       return;
     }
     this.filteredPosts = [];
-    
     this.posts.forEach(post => {
       // Check if post matches any filter criteria
       const hasBrand = this.filter.brand.includes(post.brand);
       const hasFuel = this.filter.fuel.includes(post.fuel);
       const hasGearbox = this.filter.gearbox.includes(post.gearbox);
-      
       // Push post into filteredPosts if it matches any filter criteria
       if (hasBrand || hasFuel || hasGearbox) {
         const exists = this.filteredPosts.some(p => p.id_post === post.id_post);
