@@ -15,51 +15,32 @@
     <form>
       <h3>Marque</h3>
       <div class="checkboxes">
-        <input type="checkbox" id="brand1" class="my-checkbox">
-        <label for="brand1" class="my-label">BMW</label>
-
-        <input type="checkbox" id="brand2" class="my-checkbox">
-        <label for="brand2" class="my-label">Mercedes</label>
-
-        <input type="checkbox" id="brand3" class="my-checkbox">
-        <label for="brand3" class="my-label">Audi</label>
-
-        <input type="checkbox" id="brand4" class="my-checkbox">
-        <label for="brand4" class="my-label">Peugeot</label>
-
-        <input type="checkbox" id="brand5" class="my-checkbox">
-        <label for="brand5" class="my-label">Renault</label>
-
-        <input type="checkbox" id="brand6" class="my-checkbox">
-        <label for="brand6" class="my-label">Citroen</label>
+        <ng-container *ngFor="let brand of brands">
+          <input type="checkbox" [id]="'brand'+brand" class="my-checkbox" (change)="onCheckboxChange($event, 'brand', brand)">
+          <label [for]="'brand'+brand" class="my-label">{{ brand }}</label>
+        </ng-container>
       </div>
       <div class="filter-seperation"></div>
       <h3>Boite de vitesse</h3>
       <div class="checkboxes">
-        <input type="checkbox" id="checkbox1" class="my-checkbox">
-        <label for="checkbox1" class="my-label">Automatique</label>
-
-        <input type="checkbox" id="checkbox2" class="my-checkbox">
-        <label for="checkbox2" class="my-label">Manuelle</label>
+        <ng-container *ngFor="let gearbox of gearboxes">
+          <input type="checkbox" [id]="'gearbox'+gearbox" class="my-checkbox" (change)="onCheckboxChange($event, 'gearbox', gearbox)">
+          <label [for]="'gearbox'+gearbox" class="my-label">{{ gearbox }}</label>
+        </ng-container>
       </div>
       <div class="filter-seperation"></div>
       <h3>Moteur</h3>
       <div class="checkboxes">
-        <input type="checkbox" id="checkbox1" class="my-checkbox">
-        <label for="checkbox1" class="my-label">Essence</label>
-
-        <input type="checkbox" id="checkbox2" class="my-checkbox">
-        <label for="checkbox2" class="my-label">Electrique</label>
-
-        <input type="checkbox" id="checkbox2" class="my-checkbox">
-        <label for="checkbox2" class="my-label">Hybride</label>
+        <ng-container *ngFor="let fuel of fuels">
+          <input type="checkbox" [id]="'fuel'+fuel" class="my-checkbox" (change)="onCheckboxChange($event, 'fuel', fuel)">
+          <label [for]="'fuel'+fuel" class="my-label">{{ fuel }}</label>
+        </ng-container>
       </div>
-      
-
     </form>
+    
   </div>
   <div class="posts-list">
-    <div class="post-card" *ngFor="let post of posts" [routerLink]="['/posts/info', post.id_post]">
+    <div class="post-card" *ngFor="let post of filteredPosts" [routerLink]="['/posts/info', post.id_post]">
       <div class="post-card-content">
         <div class="post-card-img">
           <img [src]="post.imageUrl" alt="Post Image">
