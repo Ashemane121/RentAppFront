@@ -1,7 +1,13 @@
 <div class="main">
     <div class="post-info-main">
-        <div class="post-info-imgs">
-
+        <div class="post-info-carousel">
+            <ngb-carousel *ngIf="images">
+                <ng-template ngbSlide *ngFor="let image of images">
+                    <div class="picsum-img-wrapper">
+                        <img [src]="image" alt="Random slide" />
+                    </div>
+                </ng-template>
+            </ngb-carousel>
         </div>
         <h1>{{ currentPost.brand}} {{ currentPost.model }}</h1>
         <p>localisation</p>

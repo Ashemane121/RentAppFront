@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './component/register/register.component';
@@ -41,6 +42,7 @@ import { UserProfileEditComponent } from './component/user-profile-edit/user-pro
 import { UserProfileSettingsComponent } from './component/user-profile-settings/user-profile-settings.component';
 import { UserProfileIdentityComponent } from './component/user-profile-identity/user-profile-identity.component';
 import { UserProfilePaymentComponent } from './component/user-profile-payment/user-profile-payment.component';
+
 
 
 @NgModule({
@@ -87,6 +89,7 @@ import { UserProfilePaymentComponent } from './component/user-profile-payment/us
     MatPaginatorModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
     ToastrModule.forRoot()
   ],
   entryComponents: [
