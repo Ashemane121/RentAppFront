@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/service/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile-identity',
@@ -6,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-profile-identity.component.css']
 })
 export class UserProfileIdentityComponent {
+  
 
 }

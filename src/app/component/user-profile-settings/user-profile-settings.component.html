@@ -1,1 +1,41 @@
-<p>user-profile-settings works!</p>
+<div class="main-container">
+  <div>
+    <h2>Changer de mot de passe</h2>
+    <form [formGroup]="pwForm" (ngSubmit)="pwChange()">
+      <div class="form-group">
+        <label for="old_pw">Ancient Mot de Passe</label>
+        <input type="text" class="form-control" id="old_pw" formControlName="old_pw">
+      </div>
+      <div class="form-group">
+        <label for="new_pw">Nouveau Mot de Passe</label>
+        <input type="text" class="form-control" id="new_pw" formControlName="new_pw">
+      </div>
+      <div class="form-group">
+        <label for="confirm_pw">Confirmer Mot de Passe</label>
+        <input type="text" class="form-control" id="confirm_pw" formControlName="confirm_pw">
+      </div>
+      <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+  </div>
+
+  <div>
+    <h2>Changer d'adresse email</h2>
+    <form [formGroup]="emailForm" (ngSubmit)="emailChange()">
+      <div class="form-group">
+        <label for="old_email">Ancienne adresse email</label>
+        <input type="text" class="form-control" id="old_email" formControlName="old_email">
+      </div>
+      <div class="form-group">
+        <label for="new_email">Nouvelle adresse email</label>
+        <input type="text" class="form-control" id="new_email" formControlName="new_email">
+      </div>
+      <div class="form-group">
+        <label for="pw">Mot de Passe</label>
+        <input type="text" class="form-control" id="pw" formControlName="pw">
+      </div>
+      <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+  </div>
+</div>
+
+  

@@ -52,6 +52,10 @@ export class AuthService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(`${this.apiurl}/updatePassword`, inputdata, { headers });
   }
+  UpdateProfilePicture(inputdata: any, token: any) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiurl}/updateProfilePicture`, inputdata, { headers });
+  }
 
   GetUserByEmail(email: any, token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -63,11 +67,26 @@ export class AuthService {
   }
   CheckEmail(email: any) {
     return this.http.get(`${this.apiurl}/checkEmail?email=${email}`, { observe: 'response' })
-      .pipe(map(response => response.status === 200));
+      .pipe(map(response => {
+        if (response.status === 200) {
+          return true;
+        } else if (response.status === 400) {
+          return false;
+        }
+        throw new Error(`Unexpected status code: ${response.status}`);
+      }));
   }
+  
   CheckAdmin(email: any) {
     return this.http.get(`${this.apiurl}/checkAdmin?email=${email}`, { observe: 'response' })
-      .pipe(map(response => response.status === 200));
+    .pipe(map(response => {
+      if (response.status === 200) {
+        return true;
+      } else if (response.status === 400) {
+        return false;
+      }
+      throw new Error(`Unexpected status code: ${response.status}`);
+    }));
   }
 
   SetTokenTimeout() {

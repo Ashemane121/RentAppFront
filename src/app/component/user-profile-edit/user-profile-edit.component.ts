@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { UploadService } from 'src/app/service/upload/upload.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,9 +20,15 @@ export class UserProfileEditComponent implements OnInit {
     role: '',
     profilePicture:'',
   }
+  profilePictureUrl='assets/bg.png'
+  selectedFiles: File[] = [];
+  selectedFile: File | null = null;
+
+
   constructor(
     private builder: FormBuilder,
     private authService: AuthService,
+    private uploadService: UploadService,
     private toastr: ToastrService,
 
   ) { }
@@ -37,19 +44,28 @@ export class UserProfileEditComponent implements OnInit {
         phone: Response.phone,
         address: Response.address,
         email:Response.email
-
       });
+      if (this.currentUser.profilePicture) {
+        this.uploadService.GetImageByRef(this.currentUser.profilePicture)
+        .subscribe(
+          (response:any) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(response);
+            reader.onloadend = () => {
+              this.profilePictureUrl = reader.result as string; // save the image URL to a property on the post object
+            };
+          }
+        )
+      }
     });
-
   }
+
   userForm = this.builder.group({
     firstname: this.builder.control(''),
     lastname: this.builder.control(''),
     phone: this.builder.control(''),
     address: this.builder.control(''),
     email:sessionStorage.getItem('userEmail')
-
-
   })
 
   onSubmit(): void {
@@ -88,5 +104,54 @@ export class UserProfileEditComponent implements OnInit {
       this.toastr.error('Veuillez vous connecter')
     }
   }
+
+  onSelectFile(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader()
+      reader.readAsDataURL(event.target.files[0])
+      reader.onloadend = () => {
+        this.profilePictureUrl = reader.result as string
+      };
+      const files: File[] = event.target.files;
+      this.selectedFiles = files;
+    }
   }
+
+  changeProfilePic(){
+    if (this.selectedFiles.length>0) {
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        const file = this.selectedFiles[i];
+        const ref = `ref-user-profile-pic-${sessionStorage.getItem('userId')}`;
+        this.uploadService.UploadImage(file, ref, sessionStorage.getItem('token'))
+        .subscribe(
+          (response:any) => { },
+          (error:any) => {
+            console.error(error);
+            if (error && error.error.text.indexOf('file uploaded successfully') > -1) {
+              const updateProfilePicValues = {
+                email : sessionStorage.getItem('userEmail'),
+                profilePicture : ref
+              }
+              this.authService.UpdateProfilePicture(updateProfilePicValues, sessionStorage.getItem('token'))
+              .subscribe(
+                (response:any) => {
+                  sessionStorage.setItem('token',response.token)
+                  this.authService.SetTokenTimeout()
+                  this.toastr.success('Photo de profil changé avec succès!')
+                }
+              )
+            } else {
+              this.toastr.error('Une erreur s\'est produite lors du changement de photo de profil.');
+              console.log(error.status)
+              console.log(error.error.text)
+            }
+          }
+        );
+      }
+    } else {
+      this.toastr.error('Veuillez sélectionner une photo de profile!');
+    }
+  }
+  
+}
 
