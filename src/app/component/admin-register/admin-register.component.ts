@@ -40,6 +40,7 @@ export class AdminRegisterComponent {
       this.service.RegisterAdmin(this.registerform.value).subscribe((response:any) => {
         this.toastr.success('Admin registered successfully')
         sessionStorage.setItem('token', response.token)
+        this.service.SetTokenTimeout()
         this.getCurrentUser(this.registerform.get('email')?.value, sessionStorage.getItem('token'))
       });
     } else {

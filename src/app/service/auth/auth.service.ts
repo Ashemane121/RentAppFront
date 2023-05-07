@@ -70,6 +70,11 @@ export class AuthService {
       .pipe(map(response => response.status === 200));
   }
 
+  SetTokenTimeout() {
+    setTimeout(() => {
+      sessionStorage.removeItem('token');
+    }, 120 * 60 * 1000); // 120 minutes converted to milliseconds
+  }  
   IsLoggedIn(){
     return sessionStorage.getItem('token')!=null;
   }

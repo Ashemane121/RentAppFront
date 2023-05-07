@@ -42,6 +42,7 @@ export class RegisterComponent {
       this.service.RegisterUser(this.registerform.value).subscribe((response:any) => {
         this.toastr.success('Please verify your account.','Registered successfully')
         sessionStorage.setItem('token', response.token)
+        this.service.SetTokenTimeout()
         this.getCurrentUser(this.registerform.get('email')?.value, sessionStorage.getItem('token'))
       });
     } else {

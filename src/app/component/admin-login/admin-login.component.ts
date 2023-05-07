@@ -41,6 +41,7 @@ export class AdminLoginComponent {
         (response: any) => {
           this.toastr.success('Logged in successfully')
           sessionStorage.setItem('token', response.token)
+          this.service.SetTokenTimeout()
           this.getCurrentUser(this.loginform.get('email')?.value, sessionStorage.getItem('token'))
         },
         (error: any) => {

@@ -78,6 +78,7 @@ export class UserProfileEditComponent implements OnInit {
         this.authService.Update(this.userForm.value, sessionStorage.getItem('token'))
         .subscribe((response:any) => {
           sessionStorage.setItem('token',response.token)
+          this.authService.SetTokenTimeout()
           this.toastr.success('Profil modifié')
         });
       } else {
