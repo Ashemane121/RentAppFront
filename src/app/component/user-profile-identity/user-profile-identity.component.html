@@ -1,0 +1,68 @@
+<div class="main-container">
+    <div class="container grid-profile">
+        <h2>Vérifiez votre profil</h2>
+        <p>Ajoutez des photos de votre carte d'identité national et permis de conduire pour vérifier votre compte et commencer à louer des véhicules</p>
+        <div class="profile-container">
+            <div class="profile-picture-container">
+                <img [src]="profilePictureUrl">
+            </div>
+            <div class="profile-verif">
+                <h2>Votre profil n'est pas vérifié!</h2>
+                <p>Veuillez vérifier votre profil</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container grid-cin">
+        <h2>Carte d'identité national</h2>
+        <p>Photo(s) de votre carte d'identité national</p>
+        <div class="image-listing-container">
+            <div class="image-container" *ngFor="let identity of identitiesCIN">
+                <mat-icon class="remove-button" *ngIf="identity.status==='Approved'">check</mat-icon>
+                <mat-icon (click)="removeIdentity(identity)" class="remove-button" *ngIf="identity.status==='Pending'">clear</mat-icon>
+                <img [src]="identity.url" alt="CIN">
+            </div>
+        </div>
+        <input type='file' (change)="onSelectFileCIN($event)" accept="image/*" multiple id='imagesCIN'>
+        <button (click)="upload(selectedFilesCIN,'CIN')" class="btn btn-primary">Ajouter</button>
+        <div class="image-listing-container">
+            <div class="image-container" *ngFor="let url of newImagesCIN">
+                <mat-icon (click)="removeImage(url, newImagesCIN, 'CIN')" class="remove-button">remove_circle</mat-icon>
+                <img [src]="url" alt="CIN">
+            </div>
+        </div>
+      
+    </div>
+    
+    <div class="container grid-pdc">
+        <h2>Permis de conduire</h2>
+        <p>Photo(s) de votre permis de conduire</p>
+        <div class="image-listing-container">
+            <div class="image-container" *ngFor="let identity of identitiesPDC">
+                <mat-icon class="remove-button" *ngIf="identity.status==='Approved'">check</mat-icon>
+                <mat-icon (click)="removeIdentity(identity)" class="remove-button" *ngIf="identity.status==='Pending'">clear</mat-icon>
+                <img [src]="identity.url" alt="PDC">
+            </div>
+        </div>
+        <input type='file' (change)="onSelectFilePDC($event)" accept="image/*" multiple id='imagesPDC'>
+        <button (click)="upload(selectedFilesPDC,'PDC')" class="btn btn-primary">Ajouter</button>
+        <div class="image-listing-container">
+            <div class="image-container" *ngFor="let url of newImagesPDC">
+                <mat-icon (click)="removeImage(url, newImagesPDC, 'PDC')" class="remove-button">remove_circle</mat-icon>
+                <img [src]="url" alt="PDC">
+            </div>
+        </div>
+    </div>
+
+    <div class="container grid-info">
+        <h3>Pourquoi vérifier votre profil ?</h3>
+        <div class="info-image-container">
+            <img>
+        </div>
+        <div class="info-text">
+            <p><mat-icon>check_circle</mat-icon>Nécessaire pour louer des voitures</p>
+            <p><mat-icon>check_circle</mat-icon>Assure la sécurité de notre plateforme pour les locataires et les propriétaires</p>
+            <p><mat-icon>check_circle</mat-icon>Gagne du temps lors de la location</p>
+        </div>
+    </div>
+  </div>

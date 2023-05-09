@@ -27,4 +27,9 @@ export class UploadService {
     return this.http.post<any>(this.apiurl, formData, { headers });
   }
 
+  DeleteImageByRef(ref: any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>(`${this.apiurl}/ref/${ref}`, { headers });
+  }
+
 }
