@@ -89,7 +89,7 @@ export class AdminIdentitiesComponent implements OnInit{
     .subscribe(
       (response:any) => {
         console.log(response)
-        const modalRef = this.modalService.open(AdminUserInfoComponent);
+        const modalRef = this.modalService.open(AdminUserInfoComponent, { size: 'lg' });
         modalRef.componentInstance.email = response.email;
       }
     ) 
