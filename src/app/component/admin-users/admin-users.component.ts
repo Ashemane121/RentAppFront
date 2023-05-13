@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { MatDialog } from '@angular/material/dialog';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminUserInfoComponent } from '../admin-user-info/admin-user-info.component';
 
 @Component({
@@ -20,7 +20,7 @@ export class AdminUsersComponent implements OnInit{
 
   constructor(
     private service: AuthService,
-    private dialog: MatDialog
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -37,12 +37,8 @@ export class AdminUsersComponent implements OnInit{
   }
 
   openUser(email: any) {
-    const dialogRef = this.dialog.open(AdminUserInfoComponent, {
-      width: '80%',
-      height: 'auto',
-      panelClass: 'custom-dialog-container',
-      data: { email: email }
-    });
+    const modalRef = this.modalService.open(AdminUserInfoComponent, { size: 'lg' });
+    modalRef.componentInstance.email = email;
   }
 
 }

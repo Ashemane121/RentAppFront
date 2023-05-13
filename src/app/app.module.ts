@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MaterialModule } from 'src/material.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -88,7 +87,6 @@ import { ImageDisplayComponent } from './component/image-display/image-display.c
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
     ReactiveFormsModule,
@@ -96,10 +94,7 @@ import { ImageDisplayComponent } from './component/image-display/image-display.c
     NgbModule,
     ToastrModule.forRoot()
   ],
-  entryComponents: [
-    AdminUserInfoComponent,
-    AdminPostInfoComponent,
-  ],
+  entryComponents: [],
   providers: [],
   bootstrap: [AppComponent]
 })

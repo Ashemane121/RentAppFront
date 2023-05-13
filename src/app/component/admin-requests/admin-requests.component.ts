@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RentalService } from 'src/app/service/rental/rental.service';
 import { AdminUserInfoComponent } from '../admin-user-info/admin-user-info.component';
 import { AdminPostInfoComponent } from '../admin-post-info/admin-post-info.component';
@@ -21,7 +21,7 @@ export class AdminRequestsComponent implements OnInit{
 
   constructor(
     private rentalService: RentalService,
-    private dialog: MatDialog
+    private modalService: NgbModal
   ) {}
 
   requests: any[] = [];
@@ -80,20 +80,12 @@ export class AdminRequestsComponent implements OnInit{
   }
 
   openPost(id: any) {
-    const dialogRef = this.dialog.open(AdminPostInfoComponent, {
-      width: '80%',
-      height: 'auto',
-      panelClass: 'custom-dialog-container',
-      data: { id: id }
-    });
+    const modalRef = this.modalService.open(AdminPostInfoComponent, { size: 'xl' });
+    modalRef.componentInstance.id = id;
   }
   openUser(email: any) {
-    const dialogRef = this.dialog.open(AdminUserInfoComponent, {
-      width: '80%',
-      height: 'auto',
-      panelClass: 'custom-dialog-container',
-      data: { email: email }
-    });
+    const modalRef = this.modalService.open(AdminUserInfoComponent, { size: 'lg' });
+    modalRef.componentInstance.email = email;
   }
 
 }

@@ -6,10 +6,9 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { PostService } from 'src/app/service/post/post.service';
 import { IdentityService } from 'src/app/service/identity/identity.service';
-import { MatDialog } from '@angular/material/dialog';
+import { ImageDisplayComponent } from '../image-display/image-display.component';
 import { AdminUserInfoComponent } from '../admin-user-info/admin-user-info.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ImageDisplayComponent } from '../image-display/image-display.component';
 
 @Component({
   selector: 'app-admin-identities',
@@ -27,7 +26,6 @@ export class AdminIdentitiesComponent implements OnInit{
     private identityService: IdentityService,
     private authService: AuthService,
     private toastr: ToastrService,
-    private dialog: MatDialog,
     private modalService: NgbModal
   ) {}
 
@@ -85,22 +83,16 @@ export class AdminIdentitiesComponent implements OnInit{
     modalRef.componentInstance.imageRef = ref;
   }
 
-
-  openUser(ref:any) {
+  openUser(ref: any) {
     const userId = ref.substring(ref.indexOf("ref-user-") + "ref-user-".length, ref.indexOf("-", ref.indexOf("ref-user-") + "ref-user-".length))
     this.authService.GetUserById(sessionStorage.getItem('userEmail'), userId, sessionStorage.getItem('token'))
     .subscribe(
       (response:any) => {
         console.log(response)
-        const dialogRef = this.dialog.open(AdminUserInfoComponent, {
-          width: '80%',
-          height: 'auto',
-          panelClass: 'custom-dialog-container',
-          data: { email: response.email }
-        });
+        const modalRef = this.modalService.open(AdminUserInfoComponent);
+        modalRef.componentInstance.email = response.email;
       }
-    )
-
+    ) 
   }
   
 }
