@@ -60,10 +60,14 @@ export class AuthService {
   GetUserByEmail(email: any, token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.apiurl}/user?email=${email}`, { headers });
-}
+  }
   GetUsers(adminEmail: any, token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.apiurl}/users?email=${adminEmail}`, { headers });
+  }
+  GetUserById(adminEmail: any, id:any, token: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.apiurl}/userId?email=${adminEmail}&id=${id}`, { headers });
   }
   CheckEmail(email: any) {
     return this.http.get(`${this.apiurl}/checkEmail?email=${email}`, { observe: 'response' })

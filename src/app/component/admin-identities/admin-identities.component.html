@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="search-container">
+        <mat-form-field appearance="fill">
+            <input matInput placeholder="search" autocomplete="off" (keyup)="filterData($event)">  
+        </mat-form-field>
+    </div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="id_identity">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id_identity}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ref">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Référence </th>
+            <td mat-cell *matCellDef="let element"> {{element.ref}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="type">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.type === 'PDC' ? 'Permis de conduire' : 'Carte d\'identité nationale'}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="status">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Statut </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef aria-label="row actions">Actions</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon (click)="openUser(element.ref)" style="cursor:pointer">person_pin</mat-icon>
+                <mat-icon *ngIf="element.status === 'Pending'" (click)="approveIdentity(element.id_identity)" style="cursor:pointer">check_circle</mat-icon>
+                <mat-icon *ngIf="element.status === 'Pending'" (click)="rejectIdentity(element.id_identity)" style="cursor:pointer">cancel</mat-icon>
+                <mat-icon (click)="openIdentity(element.ref)" style="cursor:pointer">insert_photo</mat-icon>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+  
+    </table>
+    <mat-paginator #paginator
+    [pageSize]="25"
+    [pageSizeOptions]="[2,5, 10, 25, 100]"
+    >
+    </mat-paginator>
+  
+</div>
