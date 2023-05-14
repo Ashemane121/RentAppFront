@@ -11,21 +11,28 @@
 
 .sidebar {
     background-color: #eee;
-  }
+}
   
 button {
+    display: flex;
+    align-items: center;
     background: transparent;
     color: #555;
     border: none;
-    margin:0px;
-    width:100%;
+    margin: 0px;
+    width: 100%;
     padding: 15px 30px;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: left;
 }
+
+button .button-icon {
+    padding-right: 40px;
+}
+
   
 button:hover {
     background-color: #ddd;

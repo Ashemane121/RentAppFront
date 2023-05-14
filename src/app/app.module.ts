@@ -43,6 +43,7 @@ import { UserProfileSettingsComponent } from './component/user-profile-settings/
 import { UserProfileIdentityComponent } from './component/user-profile-identity/user-profile-identity.component';
 import { UserProfilePaymentComponent } from './component/user-profile-payment/user-profile-payment.component';
 import { ImageDisplayComponent } from './component/image-display/image-display.component';
+import { AdminRentalsComponent } from './component/admin-rentals/admin-rentals.component';
 
 
 
@@ -75,7 +76,8 @@ import { ImageDisplayComponent } from './component/image-display/image-display.c
     UserProfileSettingsComponent,
     UserProfileIdentityComponent,
     UserProfilePaymentComponent,
-    ImageDisplayComponent
+    ImageDisplayComponent,
+    AdminRentalsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,34 +5,34 @@
         </mat-form-field>
     </div>
     <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="id_request">
+        <ng-container matColumnDef="id_rental">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.id_request}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.id_rental}} </td>
         </ng-container>
 
         <ng-container matColumnDef="user">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Utilisateur </th>
-            <td mat-cell *matCellDef="let element"> <p class="clickable" (click)="openUser(element.user_email)">{{element.user_email}}</p> </td>
+            <td mat-cell *matCellDef="let element"> <p class="clickable" (click)="openUser(element.request.user_email)">{{element.request.user_email}}</p> </td>
         </ng-container>
   
         <ng-container matColumnDef="post">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Annonce </th>
-            <td mat-cell *matCellDef="let element"> <p class="clickable" (click)="openPost(element.post.id_post)">Annonce : {{element.post.id_post}}</p> </td>
+            <td mat-cell *matCellDef="let element"> <p class="clickable" (click)="openPost(element.request.post.id_post)">Annonce : {{element.request.post.id_post}}</p> </td>
         </ng-container>
   
         <ng-container matColumnDef="payment">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Payement </th>
-            <td mat-cell *matCellDef="let element"> {{element.payment_method}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.request.payment_method}} </td>
         </ng-container>
     
         <ng-container matColumnDef="start_date">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Début </th>
-            <td mat-cell *matCellDef="let element"> {{element.start_date}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.request.start_date}} </td>
         </ng-container>
     
         <ng-container matColumnDef="end_date">
             <th mat-header-cell mat-sort-header *matHeaderCellDef> Fin </th>
-            <td mat-cell *matCellDef="let element"> {{element.end_date}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.request.end_date}} </td>
         </ng-container>
   
         <ng-container matColumnDef="status">
@@ -43,8 +43,9 @@
         <ng-container matColumnDef="actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef aria-label="row actions">Actions</th>
             <td mat-cell *matCellDef="let element">
-                <mat-icon *ngIf="element.status === 'Pending'" (click)="approveRequest(element.id_request)" style="cursor:pointer">check_circle</mat-icon>
-                <mat-icon *ngIf="element.status === 'Pending'" (click)="rejectRequest(element.id_request)" style="cursor:pointer">cancel</mat-icon>
+                <mat-icon *ngIf="element.status !== 'Finished'" (click)="refreshRental(element.id_rental)" style="cursor:pointer">
+                    update
+                </mat-icon>
             </td>
         </ng-container>
     
