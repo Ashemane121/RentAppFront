@@ -1,13 +1,79 @@
-<div class="main">
-  <div class="upper-filter">
-    <div class="upper-filter-loc">
-      <input type="text" id="localisation" name="localisation" placeholder="Localisation">
+<div class="main">  
+  <div class="upper-filter row">
+    <div class=" col-5">
+      <div class="form-group">
+        <input class="form-control" type="text" id="localisation" name="localisation" placeholder="Localisation">
+      </div>
     </div>
-    <div class="upper-filter-date">
-      <input type="text" id="start-date" name="start-date" placeholder="Date de Début">
-    </div>
-    <div class="upper-filter-date">
-      <input type="text" id="end-date" name="end-date" placeholder="Date de Fin">
+    <div class="datepicekrs-container col-7 row"><!--Ng Bootstrap date picker-->
+      <div class="col-6">
+        <div class="dp-hidden position-absolute">
+          <div class="input-group">
+            <input
+              name="datepicker"
+              class="form-control"
+              ngbDatepicker
+              #datepicker="ngbDatepicker"
+              [autoClose]="'outside'"
+              (dateSelect)="onDateSelection($event)"
+              [displayMonths]="2"
+              [dayTemplate]="t"
+              [weekdays]="false"
+              [outsideDays]="'hidden'"
+              [startDate]="fromDate!"
+              [markDisabled]="isDisabled"
+              navigation="arrows"
+              tabindex="-1"
+              (dateSelect)="filterPostsDate()"
+            />
+            <ng-template #t let-date let-focused="focused">
+              <span
+                class="custom-day"
+                [class.focused]="focused"
+                [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)"
+                (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null"
+                [class.disabled]="isDisabled(date)"
+                [class.is-start]="isStart(date)"
+                [class.is-end]="isEnd(date)"
+              >
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+        </div>
+        <div class="input-group">
+          <input
+            #dpFromDate
+            class="form-control"
+            placeholder="Date de début"
+            name="dpFromDate"
+            [value]="formatter.format(fromDate)"
+            (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+            readonly
+          />
+          <button class="btn btn-calendar bi bi-calendar3" (click)="datepicker.toggle()" type="button">
+            <mat-icon>date_range</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="input-group">
+          <input
+            #dpToDate
+            class="form-control"
+            placeholder="Date de fin"
+            name="dpToDate"
+            [value]="formatter.format(toDate)"
+            (input)="toDate = validateInput(toDate, dpToDate.value)"
+            readonly
+          />
+          <button class="btn btn-calendar bi bi-calendar3" (click)="datepicker.toggle()" type="button">
+            <mat-icon>date_range</mat-icon>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
   
