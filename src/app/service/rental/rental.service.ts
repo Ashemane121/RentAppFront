@@ -67,6 +67,10 @@ export class RentalService {
     return this.http.get<any>(`${this.apiurl}/rentals/get/${rentalId}`);
   }
 
+  GetRentalsByPostId(postId: any): Observable<any> {
+    return this.http.get<any>(`${this.apiurl}/rentals/get/post/${postId}`);
+  }
+
   GetRentalsByRequestId(requestId: any, token: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.apiurl}/rentals/request/${requestId}`, { headers });

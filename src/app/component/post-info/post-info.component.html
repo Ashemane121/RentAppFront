@@ -28,7 +28,7 @@
             <button *ngIf="!isLoggedIn" routerLink="/login">
                 Réserver
             </button>
-            <button *ngIf="isLoggedIn && !isOwned" [routerLink]="['/rental/create', currentPost.id_post]">
+            <button *ngIf="isLoggedIn && !isOwned" (click)="createRental(currentPost.id_post)">
                 Réserver
             </button>
             <div *ngIf="isOwned">
@@ -71,10 +71,31 @@
     </div>
     
     <div class="post-info-calendar">
-        <p>Date de début :</p>
-        <p>{{ currentPost.start_date }}</p>
-        <p>Date de fin :</p>
-        <p>{{ currentPost.end_date }}</p>
+        <p>Date de début :{{ currentPost.start_date }}</p>
+        <p>Date de fin :{{ currentPost.end_date }}</p>
+        <div class="">
+            <ngb-datepicker
+              name="datepicker"
+              ngbDatepicker
+              #datepicker="ngbDatepicker"
+              [displayMonths]="2"
+              [dayTemplate]="t"
+              [weekdays]="false"
+              [outsideDays]="'hidden'"
+              navigation="arrows"
+              tabindex="-1"
+            />
+            <ng-template #t let-date let-focused="focused">
+              <span
+                class="custom-day"
+                [class.disabled]="isDisabled(date)"
+                [class.rent]="isRent(date)"
+              >
+                {{ date.day }}
+              </span>
+            </ng-template>
+          </div>
+        
     </div>
 </div>
 

@@ -60,3 +60,17 @@
         Logout
     </button>
 </mat-toolbar>
+<mat-toolbar color="secondary" *ngIf="isLoggedIn && userRole==='ADMIN'">
+
+    <span class="example-spacer"></span>
+    <button class="secondary-button" mat-flat-button color="basic" routerLink="/posts/add">
+        <mat-icon>add</mat-icon>
+        Créer une Annonce
+    </button>
+    <button class="secondary-button" mat-flat-button color="basic" *ngIf="isLoggedIn" routerLink="/posts/owned">
+        Mes annonces
+    </button>
+    <button class="secondary-button" mat-flat-button color="basic" *ngIf="isLoggedIn" routerLink="/rental/owned">
+        Mes demandes de location
+    </button>
+</mat-toolbar>

@@ -3,9 +3,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PostService } from 'src/app/service/post/post.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { UploadService } from 'src/app/service/upload/upload.service';
+import { RentalService } from 'src/app/service/rental/rental.service';
 import { ToastrService } from 'ngx-toastr'
+import { RentalCreateComponent } from '../rental-create/rental-create.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgIf } from '@angular/common';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-post-info',
@@ -15,7 +19,7 @@ import { NgIf } from '@angular/common';
 export class PostInfoComponent {
   //images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   images: any[] = [];
-
+  rentedDates: any[] = [];
   id: number = 0
   currentPost:any = {
     brand:'',
@@ -42,10 +46,45 @@ export class PostInfoComponent {
     private authService: AuthService,
     private postService: PostService,
     private uploadService: UploadService,
+    private rentalService: RentalService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) {
 
+  }
+  hoveredDate: NgbDate | null = null
+	fromDate: any
+	toDate: any
+
+  onDateSelection(date: NgbDate) {
+    if (!this.fromDate && !this.toDate) {
+      this.fromDate = date
+    } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
+      this.toDate = date
+    } else {
+      this.toDate = null
+      this.fromDate = date
+    }
+  }
+  isDisabled(date: NgbDate) {
+    const today = new Date();
+    const selectedDate = new Date(date.year, date.month - 1, date.day);
+    const start_date = new Date(this.currentPost.start_date);
+    const end_date = new Date(this.currentPost.end_date);
+    return selectedDate < today || selectedDate < start_date || selectedDate > end_date;
+  }
+  
+  isRent(date: NgbDate) {
+    const dateString = `${date.year}-${date.month.toString().padStart(2, '0')}-${date.day.toString().padStart(2, '0')}`;
+    for (let i = 0; i < this.rentedDates.length; i++) {
+      const start = this.rentedDates[i].start;
+      const end = this.rentedDates[i].end;
+      if (dateString >= start && dateString <= end) {
+        return true;
+      }
+    }
+    return false;  
   }
 
   ngOnInit() {
@@ -67,6 +106,7 @@ export class PostInfoComponent {
         //fetchs post data
         this.postService.GetPostById(this.id).subscribe((response:any) => {
           this.currentPost=response
+          //get post images
           for (const imageRef of this.currentPost.images) {
             this.uploadService.GetImageByRef(imageRef)
             .subscribe((response: any) => {
@@ -77,6 +117,18 @@ export class PostInfoComponent {
               };
             });
           }
+          //get post rental dates
+          this.rentalService.GetRentalsByPostId(this.currentPost.id_post)
+          .subscribe((response:any) => {
+            response.forEach((rental:any) => {
+              const rent = {
+                start:rental.request.start_date,
+                end:rental.request.end_date
+              }
+              this.rentedDates.push(rent)
+            })
+            console.log(this.rentedDates)
+          })
           
         });
       } else {
@@ -84,7 +136,11 @@ export class PostInfoComponent {
         this.router.navigate(['posts'])
       }
     });
-    
+  }
+
+  createRental(id: any) {
+    const modalRef = this.modalService.open(RentalCreateComponent, { size: 'lg' });
+    modalRef.componentInstance.postId = id;
   }
 
   CheckSessionStorage(){

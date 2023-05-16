@@ -174,7 +174,7 @@
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,.2);
 }
 .custom-day.disabled {
-  color: #89929a;
+  color: #a3adb5;
   cursor: not-allowed;
 }
 .btn-calendar{
@@ -187,6 +187,6 @@
   border:1px solid  #f5154a;
 }
 
-.datepicekrs-container {
+.datepicker-container {
   width:522px;
 }

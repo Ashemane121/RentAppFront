@@ -1,34 +1,119 @@
-<mat-card>
-    <mat-card-header>
+<div class="modal-header">
+    <div>
         <h2>Louez cette voiture</h2>
-    </mat-card-header>
-    <mat-card-content>
-        <form class="example-form" [formGroup]="requestForm" (ngSubmit)="AddRequest()">
-            <mat-form-field class="example-full-width">
-                <mat-label>Methode de payement :</mat-label>
-                <input matInput formControlName="payment_method" >
-            </mat-form-field>
-
-            <mat-form-field>
-                <mat-label>Start date</mat-label>
-                <input matInput [matDatepicker]="startPicker" placeholder="Choose a date" formControlName="start_date">
-                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                <mat-datepicker #startPicker></mat-datepicker>
-            </mat-form-field>
-              
-            <mat-form-field>
-                <mat-label>End date</mat-label>
-                <input matInput [matDatepicker]="endPicker" placeholder="Choose a date" formControlName="end_date">
-                <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                <mat-datepicker #endPicker></mat-datepicker>
-            </mat-form-field>
-            
-            
-            <div>
-                <button mat-raised-button color="primary">Submit</button>
-                <a [routerLink]="['/posts/info', postId]" mat-raised-button color="accent">Retour</a>
+        <h4>{{currentPost.brand}} {{currentPost.model}}</h4>
+    </div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()">
+    </button>
+</div>
+<div class="modal-body">
+    <h3>Méthode de payment</h3>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="payment_method" id="payment_method1" value="cash" checked>
+        <label class="form-check-label" for="payment_method1">Cash</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="payment_method" id="payment_method2" value="credit card">
+        <label class="form-check-label" for="payment_method2">Carte de crédit</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="payment_method" id="payment_method3" value="other">
+        <label class="form-check-label" for="payment_method3">Autre</label>
+    </div>
+    
+    <h3>Période de location</h3>
+    <div class="row">
+        <div class="col-9 row">
+            <div class="col-6">
+              <div class="dp-hidden position-absolute">
+                <div class="input-group">
+                          <input
+                            name="datepicker"
+                            class="form-control"
+                            ngbDatepicker
+                            #datepicker="ngbDatepicker"
+                            [autoClose]="'outside'"
+                            (dateSelect)="onDateSelection($event)"
+                            [markDisabled]="isMarkedDisabled"
+                            [displayMonths]="2"
+                            [dayTemplate]="t"
+                            [weekdays]="false"
+                            [outsideDays]="'hidden'"
+                            [startDate]="fromDate!"
+                            navigation="arrows"
+                            tabindex="-1"
+                          />
+                          <ng-template #t let-date let-focused="focused">
+                            <span
+                                class="custom-day"
+                                [class.focused]="focused"
+                                [class.range]="isRange(date)"
+                                [class.faded]="isHovered(date) || isInside(date)"
+                                (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null"
+                                [class.disabled]="isDisabled(date)"
+                                [class.rent]="isRent(date)"
+                                [class.is-start]="isStart(date)"
+                                [class.is-end]="isEnd(date)"
+                            >
+                                {{ date.day }}
+                            </span>
+                          </ng-template>
+                </div>
+              </div>
+              <div class="input-group">
+                <input
+                  #dpFromDate
+                  class="form-control"
+                  placeholder="Date de début"
+                  name="dpFromDate"
+                  id="fromDate"
+                  [value]="formatter.format(fromDate)"
+                  (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+                  readonly
+                />
+                <button class="btn btn-calendar bi bi-calendar3" (click)="datepicker.toggle()" type="button">
+                  <mat-icon>date_range</mat-icon>
+                </button>
+              </div>
             </div>
-        </form>
-    </mat-card-content>
-  </mat-card>
+            <div class="col-6">
+              <div class="input-group">
+                <input
+                  #dpToDate
+                  class="form-control"
+                  placeholder="Date de fin"
+                  name="dpToDate"
+                  id="toDate"
+                  [value]="formatter.format(toDate)"
+                  (input)="toDate = validateInput(toDate, dpToDate.value)"
+                  readonly
+                />
+                <button class="btn btn-calendar bi bi-calendar3" (click)="datepicker.toggle()" type="button">
+                  <mat-icon>date_range</mat-icon>
+                </button>
+              </div>
+            </div>
+        </div>
 
+        <div class="col-3">
+            <button (click)="refreshDates()" class="refresh-btn"><mat-icon class="refresh-btn-icon">refresh</mat-icon> Rafraichir</button>
+            <div class="rent-info-container">
+                <div class="rent-info">
+                    <div class="rent-info-color color-1">12</div>
+                    <div class="rent-info-text">Date déjà louée</div>
+                </div>
+                <div class="rent-info">
+                    <div class="rent-info-color color-2">12</div>
+                    <div class="rent-info-text">Date sélectionnée</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="buttons-container">
+        <button (click)="AddRequest()" class="buttons-submit" type="submit">Envoyer</button>
+        <button (click)="closeModal()" class="buttons-return">Retour</button>
+    </div>
+      
+</div>
