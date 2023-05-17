@@ -12,9 +12,10 @@
         <h1>{{ currentPost.brand}} {{ currentPost.model }}</h1>
         <p>localisation</p>
         <p>{{ currentPost.year }}</p>
-        <p>nb de places</p>
+        <p *ngIf="rate"><ngb-rating [rate]="1" [max]="1"></ngb-rating>{{ rate }}</p>
+        <p *ngIf="!rate"><ngb-rating [rate]="1" [max]="1"></ngb-rating>Pas encore d'évaluations</p>
     </div>
-    <div class="post-info-description">
+    <div class="post-info-box post-info-description">
         <h2>Description du véhicule</h2>
         <p>{{ currentPost.description }}</p>
     </div>
@@ -37,11 +38,11 @@
         </div>
     </div>
 
-    <div class="post-info-conditions">
+    <div class="post-info-box post-info-conditions">
         <h2>Condition du propriétaire</h2>
         <p>{{ currentPost.conditions }}</p>
     </div>
-    <div class="post-info-details">
+    <div class="post-info-box post-info-details">
         <div>
             <h3><img src="assets/engine.png"> Moteur</h3>
             <p>{{ currentPost.fuel }}</p>
@@ -55,7 +56,7 @@
             <p>{{ currentPost.mileage }}</p>
         </div>
     </div>
-    <div class="post-info-options">
+    <div class="post-info-box post-info-options">
         <div>
             <p>Moteur</p>
             <p>{{ currentPost.fuel }}</p>
@@ -70,7 +71,7 @@
         </div>
     </div>
     
-    <div class="post-info-calendar">
+    <div class="post-info-box post-info-calendar">
         <p>Date de début :{{ currentPost.start_date }}</p>
         <p>Date de fin :{{ currentPost.end_date }}</p>
         <div class="">
@@ -94,8 +95,16 @@
                 {{ date.day }}
               </span>
             </ng-template>
-          </div>
-        
+        </div>
+    </div>
+
+    <div class="post-info-box post-info-ratings">
+        <h2>Évaluations des locataires</h2>
+        <p *ngIf="ratingsWithComments.length===0">Aucun commentaire pour ce véhicule</p>
+        <div *ngFor="let rating of ratingsWithComments" class="">
+            <ngb-rating [rate]="rating.stars" [max]="5"></ngb-rating>
+            <p>{{ rating.comment }}</p>
+        </div>
     </div>
 </div>
 

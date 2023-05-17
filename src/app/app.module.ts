@@ -44,6 +44,8 @@ import { UserProfileIdentityComponent } from './component/user-profile-identity/
 import { UserProfilePaymentComponent } from './component/user-profile-payment/user-profile-payment.component';
 import { ImageDisplayComponent } from './component/image-display/image-display.component';
 import { AdminRentalsComponent } from './component/admin-rentals/admin-rentals.component';
+import { RentalRequestsComponent } from './component/rental-requests/rental-requests.component';
+import { AdminRatingsComponent } from './component/admin-ratings/admin-ratings.component';
 
 
 
@@ -77,7 +79,9 @@ import { AdminRentalsComponent } from './component/admin-rentals/admin-rentals.c
     UserProfileIdentityComponent,
     UserProfilePaymentComponent,
     ImageDisplayComponent,
-    AdminRentalsComponent
+    AdminRentalsComponent,
+    RentalRequestsComponent,
+    AdminRatingsComponent
   ],
   imports: [
     BrowserModule,

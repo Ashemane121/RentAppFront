@@ -1,23 +1,44 @@
-<mat-card class="post-card">
-    <mat-card-content>
-        <p>{{ request.status }}</p>
-        <p>{{ request.payment_method }}</p>
-        <p>{{ request.start_date }}</p>
-        <p>{{ request.end_date }}</p>
-    </mat-card-content>
-
-    <mat-card-header>
-        <mat-card-title>{{ request.post.brand }}</mat-card-title>
-        <mat-card-subtitle>{{ request.post.model }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <p>{{ request.post.price }}</p>
-        <p>{{ request.post.start_date }}</p>
-        <p>{{ request.post.end_date }}</p>
-    </mat-card-content>
-
-    <button mat-flat-button color="basic" routerLink="/rental/owned">
-        Retour
+ <div class="modal-header">
+    <div>
+        <h2>{{rental.request.post.brand}} {{rental.request.post.model}}</h2>
+    </div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()">
     </button>
-  </mat-card>
-  
+</div>
+<div class="modal-body">
+    <div class="main-container">
+        <div class="image-container">
+            <img [src]="postImageUrl" alt="image">
+        </div>
+        <div class="text-container">
+            <p>Date de début : {{rental.request.start_date}}</p>
+            <p>Date de fin : {{rental.request.end_date}}</p>
+            <p>Statut : {{rental.status}}</p>
+        </div>
+    </div>
+
+    <div *ngIf="hasRating" class="rating-container">
+        <h1>Votre évaluation!</h1>
+        <ngb-rating [readonly]="!updating" [max]="5" [rate]="rental.rating.stars" [formControl]="ratingControl"></ngb-rating>
+        <div class="rating-update-container">
+            <button class="rating-update" (click)="toggleUpdate()" *ngIf="!updating"><mat-icon>create</mat-icon></button>
+            <button class="rating-update" (click)="toggleUpdate()" *ngIf="updating"><mat-icon>close</mat-icon></button>
+        </div>
+        
+        <textarea class="form-control rating-comment" id="comment" placeholder="Pas de commentaire" [readonly]="!updating" [formControl]="commentControl"></textarea>
+        
+    </div>
+    
+    <div *ngIf="!hasRating" class="rating-container">
+        <h1>Evaluez la location!</h1>
+        <ngb-rating [max]="5" [formControl]="ratingControl"></ngb-rating>
+        <textarea class="form-control rating-comment" id="comment" placeholder="Ajoutez un commentaire si vous le souhaitez..." [formControl]="commentControl"></textarea>
+    </div>
+    
+    <div class="buttons-container">
+        <button *ngIf="!hasRating" (click)="addRating()" class="buttons-submit" type="submit">Envoyer</button>
+        <button *ngIf="hasRating && updating" (click)="updateRating()" class="buttons-submit" type="submit">Modifier Evaluation</button>
+        <button (click)="closeModal()" class="buttons-return">Retour</button>
+    </div>
+      
+</div>

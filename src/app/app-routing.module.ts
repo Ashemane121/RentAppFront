@@ -23,6 +23,7 @@ import { AdminUserInfoComponent } from './component/admin-user-info/admin-user-i
 import { RentalCreateComponent } from './component/rental-create/rental-create.component';
 import { RentalInfoComponent } from './component/rental-info/rental-info.component';
 import { RentalOwnedComponent } from './component/rental-owned/rental-owned.component';
+import { RentalRequestsComponent } from './component/rental-requests/rental-requests.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path:'posts/edit/:id', component:PostEditComponent, canActivate:[AuthGuard]},
   {path:'posts/info/:id', component:PostInfoComponent},
   {path:'rental/owned', component:RentalOwnedComponent, canActivate:[AuthGuard]},
+  {path:'rental/requests', component:RentalRequestsComponent, canActivate:[AuthGuard]},
   {path:'rental/create/:id', component:RentalCreateComponent, canActivate:[AuthGuard]},
   {path:'rental/info/:id', component:RentalInfoComponent, canActivate:[AuthGuard]}
 ];

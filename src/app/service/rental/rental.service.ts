@@ -60,7 +60,7 @@ export class RentalService {
   // Rentals apis
 
   GetAllRentals(): Observable<any> {
-    return this.http.get<any>(`${this.apiurl}/rentals/get`);
+    return this.http.get<any>(`${this.apiurl}/rentals/get/all`);
   }
 
   GetRentalById(rentalId: any): Observable<any> {
@@ -71,9 +71,12 @@ export class RentalService {
     return this.http.get<any>(`${this.apiurl}/rentals/get/post/${postId}`);
   }
 
-  GetRentalsByRequestId(requestId: any, token: any): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get<any>(`${this.apiurl}/rentals/request/${requestId}`, { headers });
+  GetRentalsByRequestId(requestId: any): Observable<any> {
+    return this.http.get<any>(`${this.apiurl}/rentals/get/request/${requestId}`);
+  }
+
+  GetRentalsByUserId(userId: any): Observable<any> {
+    return this.http.get<any>(`${this.apiurl}/rentals/get/user/${userId}`);
   }
 
   AddRental(requestId: any, rental: any, token: any): Observable<any> {

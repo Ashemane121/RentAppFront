@@ -1,31 +1,13 @@
-<h1>Demandes de locations</h1>
-<div class="post-card" *ngFor="let request of myPendingRequests">
-    <div>
-        <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
-    </div>
-    <div>
-        <p>{{ request.status }}</p>
-        <p>{{ request.payment_method }}</p>
-        <p>{{ request.start_date }}</p>
-        <p>{{ request.end_date }}</p>
-    </div>
-    <button mat-flat-button color="basic" [routerLink]="['/rental/info', request.id_request]">
-        Afficher
-    </button>
-</div>
-
 <h1>Locations approuvés</h1>
-<div class="post-card" *ngFor="let request of myApprouvedRequests">
+<div class="post-card" *ngFor="let rental of myRentals">
     <div>
-        <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
+        <h2>{{ rental.request.post.brand }} {{ rental.request.post.model }}</h2>
     </div>
     <div>
-        <p>{{ request.status }}</p>
-        <p>{{ request.payment_method }}</p>
-        <p>{{ request.start_date }}</p>
-        <p>{{ request.end_date }}</p>
+        <p>{{ rental.request.status }}</p>
+        <p>{{ rental.request.payment_method }}</p>
+        <p>{{ rental.request.start_date }} -> {{ rental.request.end_date }}</p>
     </div>
-    <button mat-flat-button color="basic" [routerLink]="['/rental/info', request.id_request]">
-        Afficher
-    </button>
+    
+    <button mat-flat-button color="basic" (click)="openRental(rental.id_rental)">Afficher</button>    
 </div>

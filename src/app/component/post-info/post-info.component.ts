@@ -4,6 +4,7 @@ import { PostService } from 'src/app/service/post/post.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { UploadService } from 'src/app/service/upload/upload.service';
 import { RentalService } from 'src/app/service/rental/rental.service';
+import { RatingService } from 'src/app/service/rating/rating.service';
 import { ToastrService } from 'ngx-toastr'
 import { RentalCreateComponent } from '../rental-create/rental-create.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,9 +18,11 @@ import { NgbDate, NgbCalendar, NgbDateParserFormatter, NgbDatepickerModule } fro
   styleUrls: ['./post-info.component.css']
 })
 export class PostInfoComponent {
-  //images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  images: any[] = [];
-  rentedDates: any[] = [];
+  images: any[] = []
+  rentedDates: any[] = []
+  rate=0
+  ratings: any[] = []
+  ratingsWithComments: any[] = []
   id: number = 0
   currentPost:any = {
     brand:'',
@@ -47,6 +50,7 @@ export class PostInfoComponent {
     private postService: PostService,
     private uploadService: UploadService,
     private rentalService: RentalService,
+    private ratingService: RatingService,
     private router: Router,
     private toastr: ToastrService,
     private modalService: NgbModal
@@ -98,7 +102,6 @@ export class PostInfoComponent {
           //checks if the current user owns the post
           this.postService.PostOwned(this.id).subscribe(isOwned => {
             this.isOwned = isOwned;
-            console.log('is owned = ', isOwned)
           });
         } else {
           this.isLoggedIn = false;
@@ -126,8 +129,15 @@ export class PostInfoComponent {
                 end:rental.request.end_date
               }
               this.rentedDates.push(rent)
+              if (rental.rating) {
+                this.ratings.push(rental.rating)
+                if (rental.rating.comment) {
+                  this.ratingsWithComments.push(rental.rating)
+                }
+              }
             })
-            console.log(this.rentedDates)
+            const totalStars = this.ratings.reduce((sum, rating) => sum + rating.stars, 0)
+            this.rate = totalStars / this.ratings.length
           })
           
         });
@@ -141,12 +151,5 @@ export class PostInfoComponent {
   createRental(id: any) {
     const modalRef = this.modalService.open(RentalCreateComponent, { size: 'lg' });
     modalRef.componentInstance.postId = id;
-  }
-
-  CheckSessionStorage(){
-    console.log('id : ',this.id)
-    console.log('current post : ',this.currentPost)
-    console.log('am i logged in ? : ',this.isLoggedIn)
-    console.log('do i own this ? : ',this.isOwned)
   }
 }

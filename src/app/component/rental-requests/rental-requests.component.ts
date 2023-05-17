@@ -4,22 +4,22 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { RentalInfoComponent } from '../rental-info/rental-info.component'
 
 @Component({
-  selector: 'app-rental-owned',
-  templateUrl: './rental-owned.component.html',
-  styleUrls: ['./rental-owned.component.css']
+  selector: 'app-rental-requests',
+  templateUrl: './rental-requests.component.html',
+  styleUrls: ['./rental-requests.component.css']
 })
-export class RentalOwnedComponent implements OnInit {
+export class RentalRequestsComponent implements OnInit {
   constructor(
     private rentalService: RentalService,
     private modalService: NgbModal
   ) { }
-  myRentals:any[] =[]
+  myRequests: any[] = []
 
   ngOnInit() {
-    this.rentalService.GetRentalsByUserId(sessionStorage.getItem('userId'))
-    .subscribe((response:any) => {
-      this.myRentals = response
-    }) 
+    this.rentalService.GetRequestsByUserId(sessionStorage.getItem('userId'), sessionStorage.getItem('token'))
+    .subscribe(response => {
+      this.myRequests = response
+    })    
   }
 
   openRental(rentalId: any) {
