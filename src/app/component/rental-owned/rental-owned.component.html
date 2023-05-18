@@ -9,5 +9,6 @@
         <p>{{ rental.request.start_date }} -> {{ rental.request.end_date }}</p>
     </div>
     
-    <button mat-flat-button color="basic" (click)="openRental(rental.id_rental)">Afficher</button>    
+    <button class="btn btn-primary" color="basic" (click)="openRental(rental.id_rental)">Afficher</button>   
+    <button class="btn btn-secondary" color="basic" (click)="openClaim(rental.id_rental)">Réclamation</button>    
 </div>

@@ -6,6 +6,7 @@
       <button (click)="setActiveComponent('locations')"><mat-icon class="button-icon">receipt</mat-icon> Locations</button>
       <button (click)="setActiveComponent('identities')"><mat-icon class="button-icon">fingerprint</mat-icon> Pièces d'identités</button>
       <button (click)="setActiveComponent('ratings')"><mat-icon class="button-icon">comment</mat-icon> Évaluations</button>
+      <button (click)="setActiveComponent('claims')"><mat-icon class="button-icon">error</mat-icon> Réclamations</button>
   </div>
   <div class="main-content">
       <app-admin-users *ngIf="activeComponent === 'utilisateurs'"></app-admin-users>
@@ -14,5 +15,6 @@
       <app-admin-rentals *ngIf="activeComponent === 'locations'"></app-admin-rentals>
       <app-admin-identities *ngIf="activeComponent === 'identities'"></app-admin-identities>
       <app-admin-ratings *ngIf="activeComponent === 'ratings'"></app-admin-ratings>
+      <app-admin-claims *ngIf="activeComponent === 'claims'"></app-admin-claims>
   </div>
 </div>

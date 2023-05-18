@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="search-container">
+        <mat-form-field appearance="fill">
+            <input matInput placeholder="search" autocomplete="off" (keyup)="filterData($event)">  
+        </mat-form-field>
+    </div>
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="id_claim">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.claim.id_claim}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Utilisateur </th>
+            <td mat-cell *matCellDef="let element"> <p class="clickable" (click)="openUser(element.request.user_email)">{{element.request.user_email}}</p> </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="post">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Annonce </th>
+            <td mat-cell *matCellDef="let element"> <p class="clickable" (click)="openPost(element.request.post.id_post)">Annonce : {{element.request.post.id_post}}</p> </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="type">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.claim.type}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="subject">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Sujet </th>
+            <td mat-cell *matCellDef="let element"> {{element.claim.subject}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="status">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Statut </th>
+            <td mat-cell *matCellDef="let element"> {{element.claim.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef aria-label="row actions">Actions</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon *ngIf="element.claim.status === 'Pending'" (click)="approveClaim(element.claim.id_claim)" style="cursor:pointer">check_circle</mat-icon>
+                <mat-icon *ngIf="element.claim.status === 'Pending'" (click)="rejectClaim(element.claim.id_claim)" style="cursor:pointer">cancel</mat-icon>             
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+  
+    </table>
+    <mat-paginator #paginator
+    [pageSize]="25"
+    [pageSizeOptions]="[2,5, 10, 25, 100]"
+    >
+    </mat-paginator>
+  
+</div>

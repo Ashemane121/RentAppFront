@@ -46,6 +46,8 @@ import { ImageDisplayComponent } from './component/image-display/image-display.c
 import { AdminRentalsComponent } from './component/admin-rentals/admin-rentals.component';
 import { RentalRequestsComponent } from './component/rental-requests/rental-requests.component';
 import { AdminRatingsComponent } from './component/admin-ratings/admin-ratings.component';
+import { RentalClaimComponent } from './component/rental-claim/rental-claim.component';
+import { AdminClaimsComponent } from './component/admin-claims/admin-claims.component';
 
 
 
@@ -81,7 +83,9 @@ import { AdminRatingsComponent } from './component/admin-ratings/admin-ratings.c
     ImageDisplayComponent,
     AdminRentalsComponent,
     RentalRequestsComponent,
-    AdminRatingsComponent
+    AdminRatingsComponent,
+    RentalClaimComponent,
+    AdminClaimsComponent
   ],
   imports: [
     BrowserModule,
