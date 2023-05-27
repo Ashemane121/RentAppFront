@@ -1,0 +1,67 @@
+main {
+    background-image: url('/assets/bg-big.png');
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: left;
+    height:100%;
+}
+
+.main-container{
+    background-color: white;
+    height:100%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.header-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height:70px;
+}
+
+.header-container button{
+    height: 100%;
+    font-size: 30px;
+    font-weight: 400;
+    background-color: transparent;
+    padding-left:20px;
+    padding-right:20px;
+    transition: 0.3s ease;
+}
+.active{
+    color:#f5154a;
+    border-bottom: 8px solid #f5154a;
+}
+button{
+    border-color: transparent;
+}
+
+/*renty-container*/
+.renty-container {
+    display: none;
+}
+
+@media (min-width: 768px) {
+  .renty-container {
+    position: absolute;
+    right:0px;
+    top:0px;
+    height:150px;
+    width:300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+  
+.renty-container a{
+    font-size: 70px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    color:white;
+}
+.renty-container a:hover{
+    color:#f5154a;
+}

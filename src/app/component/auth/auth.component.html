@@ -1,0 +1,16 @@
+<main class="main row">
+    <div class="main-container col-md-6 col-12">
+        <div class="header-container">
+            <button (click)="setActiveComponent('login')" [class.active]="activeComponent === 'login'">Se connecter</button>
+            <button (click)="setActiveComponent('register')" [class.active]="activeComponent === 'register'">S'inscrire</button>
+        </div>
+        <div class="body-container">
+            <app-login *ngIf="activeComponent === 'login'"></app-login>
+            <app-register *ngIf="activeComponent === 'register'"></app-register>
+        </div>
+    </div>
+</main>
+
+<div class="renty-container">
+    <a (click)="goToHome()">RENTy</a>
+</div>

@@ -2,24 +2,3 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.mdc-button{
-    margin: 5px !important;
-}
-.mat-mdc-form-field{
-    width: 100%;
-}
-.content{
-    display: block !important;
-}
-a{
-    color: white !important;
-padding: 1%;
-}
-
-/*modal*/
-.custom-dialog-container {
-    width:80%;
-    max-height: calc(100vh - 64px);
-    overflow-y: auto;
-    margin-top: 32px;
-}

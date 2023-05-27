@@ -1,20 +1,22 @@
-<main>
-  <div class="container">
-    <h2>Connectez-vous</h2>
-    <form class="example-form" [formGroup]="loginform" (ngSubmit)="proceedlogin()">
-      <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" >
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" >
-      </mat-form-field>
-      <div>
-        <button mat-raised-button color="primary">Login</button>
-        <a routerLink="/register" mat-raised-button color="accent">New User?</a>
-      </div>
-    </form>
-  </div>
-</main>
+<div class="container">
+  <h2>Connectez-vous</h2>
+  <form class="example-form" [formGroup]="loginform" (ngSubmit)="proceedlogin()">
+    <div class="form-container">
+      <label for="email">Adresse email</label>
+      <input type="email" class="login-input" id="email" aria-describedby="emailHelp" placeholder="Jean@gmail.com" formControlName="email">
+    </div>
+    <div class="form-container">
+      <label for="password">Mot de passe</label>
+      <input type="password" class="login-input" id="password" placeholder="Mot de passe" formControlName="password">
+    </div>
+    
+    <a class="pw-forget">Mot de passe oublié</a>
+    
+    <div class="button-container">
+      <button class="submit-btn" color="primary">Se connecter</button>
+    </div>
+
+  </form>
+</div>
+
 

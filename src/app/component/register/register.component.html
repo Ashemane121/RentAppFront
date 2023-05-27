@@ -1,28 +1,27 @@
-<main>
-    <div class="container">
-        <h2>Créer un compte</h2>
-        <form class="example-form" [formGroup]="registerform" (ngSubmit)="proceedregister()">
-            <mat-form-field class="example-full-width">
-                <mat-label>First Name</mat-label>
-                <input matInput formControlName="firstname" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Last Name</mat-label>
-                <input matInput formControlName="lastname" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput formControlName="password" >
-            </mat-form-field>
-            <div>
-                <button mat-raised-button color="primary">Submit</button>
-                <a routerLink="/login" mat-raised-button color="accent">Back to Login</a>
-            </div>
-        </form>
-    </div>
-  </main>
+<div class="container">
+    <h2>Créer un compte</h2>
+    <form class="example-form" [formGroup]="registerform" (ngSubmit)="proceedregister()">
+        <div class="form-container">
+            <label for="firstname">Nom </label>
+            <input type="text" class="login-input" id="firstname" placeholder="Dubois" formControlName="firstname">
+        </div>
+        <div class="form-container">
+            <label for="lastname">Prénom </label>
+            <input type="text" class="login-input" id="lastname" placeholder="Jean" formControlName="lastname">
+        </div>
+        <div class="form-container">
+            <label for="email">Adresse email</label>
+            <input type="email" class="login-input" id="email" aria-describedby="emailHelp" placeholder="Jean@gmail.com" formControlName="email">
+        </div>
+        <div class="form-container">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="login-input" id="password" placeholder="Mot de Passe" formControlName="password">
+        </div>        
+          
+        <div class="button-container">
+          <button class="submit-btn" color="primary">S'inscrire</button>
+        </div>
+
+    </form>
+</div>
 

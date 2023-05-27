@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         const url = event.url;
-        this.showHeader = !['/login', '/register', '/admin/register', '/admin/login'].includes(url);
+        this.showHeader = !['/auth', '/login', '/register', '/admin/register', '/admin/login'].includes(url);
       }
     });
   }

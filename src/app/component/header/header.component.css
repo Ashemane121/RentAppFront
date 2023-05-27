@@ -2,15 +2,91 @@
     flex: 1 1 auto;
   }
 
+.navbar-home{
+  background-color: #c8e8fc;
+}
 .navbar{
   background-color: #2d2d2d;
+  display:flex;
+  justify-content: space-between;
+  padding:0px 12%;
+  height:60px;
+}
+
+.navbar a{
+  width:200px;
+  height:40px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color:white;
+  font-size: 30px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.navbar a:hover{
+  color:#f5154a;
+}
+
+.nav-button {
+  background:transparent;
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+  height:40px;
+  margin:0px 5px;
+  border: 0px;
+  border-radius: 20px;
+  padding-left:15px;
+  padding-right:15px;
+  transition: 0.3s ease;
+}
+.nav-button:hover {
+  background:white;
+  color:#2d2d2d;
+}
+
+/*seconday navbar*/
+
+.secondary-navbar{
+  background-color: #e6e6e6;
+  display:flex;
+  justify-content: center;
+  padding:0px 12%;
+  height:50px;
+}
+
+.nav-button {
+  background:transparent;
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+  height:40px;
+  margin:0px 5px;
+  border: 0px;
+  border-radius: 20px;
+  padding-left:15px;
+  padding-right:15px;
+  transition: 0.3s ease;
 }
 
 .secondary-button:hover{
   border-bottom: #f5154a solid 4px;
+  color:#f5154a;
 }
 .secondary-button{
-  border-bottom: transparent solid 4px;
+  background:transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color:#2d2d2d;
+  height:100%;
+  margin:0px;
+  border: 0px;
+  border-bottom:transparent solid 4px;
+  padding-left:15px;
+  padding-right:15px;
+  transition: 0.3s ease;
 }
 
 

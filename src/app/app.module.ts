@@ -48,6 +48,7 @@ import { RentalRequestsComponent } from './component/rental-requests/rental-requ
 import { AdminRatingsComponent } from './component/admin-ratings/admin-ratings.component';
 import { RentalClaimComponent } from './component/rental-claim/rental-claim.component';
 import { AdminClaimsComponent } from './component/admin-claims/admin-claims.component';
+import { AuthComponent } from './component/auth/auth.component';
 
 
 
@@ -85,7 +86,8 @@ import { AdminClaimsComponent } from './component/admin-claims/admin-claims.comp
     RentalRequestsComponent,
     AdminRatingsComponent,
     RentalClaimComponent,
-    AdminClaimsComponent
+    AdminClaimsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

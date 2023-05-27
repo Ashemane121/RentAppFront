@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
 import { AdminAuthGuard } from './guard/admin-auth.guard';
 import { HomeComponent } from './component/home/home.component';
+import { AuthComponent } from './component/auth/auth.component';
 import { LoginComponent } from './component/login/login.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { UserProfileEditComponent } from './component/user-profile-edit/user-profile-edit.component';
@@ -27,7 +28,7 @@ import { RentalRequestsComponent } from './component/rental-requests/rental-requ
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
-  {path:'home', component:HomeComponent},
+  {path:'auth', component:AuthComponent},
   {path:'register', component:RegisterComponent},
   {path:'login', component:LoginComponent},
   {path:'user/profile',component:UserProfileComponent,canActivate:[AuthGuard]},
