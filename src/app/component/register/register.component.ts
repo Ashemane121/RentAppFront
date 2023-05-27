@@ -32,7 +32,7 @@ export class RegisterComponent {
         sessionStorage.setItem('userEmail', response.email)
         sessionStorage.setItem('userRole', response.role)
         this.service.refresh()
-        this.router.navigate(['home'])
+        this.router.navigate(['/'])
       }
     )
   }

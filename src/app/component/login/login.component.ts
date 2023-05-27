@@ -31,7 +31,7 @@ export class LoginComponent {
         sessionStorage.setItem('userRole', response.role)
         //add the rest of the user's informations here
         this.service.refresh()
-        this.router.navigate(['home'])
+        this.router.navigate(['/'])
       }
     )
   }
