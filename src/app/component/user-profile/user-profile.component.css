@@ -2,7 +2,7 @@
     margin-left: 12%;
     margin-right: 12%;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 2fr 7fr;
     grid-template-rows: 100%;
     height: 100vh;
 
@@ -10,13 +10,15 @@
 
 .sidebar{
     padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 
 }
 button {
     background: transparent;
     color: #555;
     border: none;
-    margin:0px;
+    margin:5px 0px;
     width:100%;
     padding: 15px 30px;
     font-size: 15px;
@@ -27,11 +29,14 @@ button {
     border-radius: 30px;
 }
   
+.active{
+    background:#eee;
+    color:#f5154a;
+}
 button:hover {
     background-color: #eee;
 }
 
 .main-content{
     padding-top: 50px;
-
 }

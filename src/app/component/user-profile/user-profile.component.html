@@ -1,9 +1,9 @@
 <div class="dashboard-container">
     <div class="sidebar">
-        <button (click)="setActiveComponent('edit')">Modifier Profil</button>
-        <button (click)="setActiveComponent('settings')">Paramètres Compte</button>
-        <button (click)="setActiveComponent('identity')">Pièces d'Identités</button>
-        <button (click)="setActiveComponent('payment')">Méthode de Payement</button>
+        <button (click)="setActiveComponent('edit')" [class.active]="activeComponent === 'edit'">Modifier Profil</button>
+        <button (click)="setActiveComponent('settings')" [class.active]="activeComponent === 'settings'">Paramètres Compte</button>
+        <button (click)="setActiveComponent('identity')" [class.active]="activeComponent === 'identity'">Pièces d'Identités</button>
+        <button (click)="setActiveComponent('payment')" [class.active]="activeComponent === 'payment'">Méthode de Payement</button>
     </div>
     <div class="main-content">
         <app-user-profile-edit *ngIf="activeComponent === 'edit'"></app-user-profile-edit>

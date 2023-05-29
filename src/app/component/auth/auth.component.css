@@ -64,4 +64,5 @@ button{
 }
 .renty-container a:hover{
     color:#f5154a;
+    text-shadow: 0px 0px 10px #f5154a;
 }

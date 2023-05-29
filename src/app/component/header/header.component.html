@@ -1,33 +1,36 @@
 <!--USER HEADER-->
-<nav class="navbar" *ngIf="userRole!=='ADMIN'">
+<nav class="navbar" [class.home-nav]="isHome" *ngIf="userRole!=='ADMIN'">
     <a href="/">
         <span>Renty</span>
     </a>
     <div class="nav-button-container">
-        <button class="nav-button" color="basic" routerLink="/posts">
+        <button class="nav-button" routerLink="/posts">
             Liste des Annonces
         </button>
         <button class="nav-button" *ngIf="!isLoggedIn" routerLink="/auth">
             Se connecter
         </button>
-        <button class="nav-button" *ngIf="isLoggedIn" ngbDropdown ngbDropdownToggle>
-            Profil
-            <div ngbDropdownMenu aria-labelledby="dropdownProfile">
-                <button ngbDropdownItem routerLink="/user/profile">Profil</button>
-                <button ngbDropdownItem>Paramètres</button>
-                <button ngbDropdownItem>Méthode de paiement</button>
+        <button class="nav-button account-button" *ngIf="isLoggedIn" ngbDropdown ngbDropdownToggle>
+            <div class="profile-pic">
+              <img [src]="profilePictureUrl">
             </div>
-        </button>
-        
-        <button class="nav-button" *ngIf="isLoggedIn" (click)="Logout()">
-            Logout
+            <div class="profile-info">
+              <p>Compte</p>
+              <div class="profile-menu" ngbDropdownMenu aria-labelledby="dropdownProfile">
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/edit">Profil</button>
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/settings">Paramètres</button>
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/identity">Pièces d'identité</button>
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/payment">Méthode de paiement</button>
+                <button class="profile-menu-button" ngbDropdownItem (click)="Logout()">Déconnexion</button>
+              </div>
+            </div>
         </button>
         
     </div>
 </nav>
 
 <!--ADMIN HEADER-->
-<nav class="navbar" *ngIf="isLoggedIn && userRole==='ADMIN'">
+<nav class="navbar" [class.home-nav]="isHome" *ngIf="isLoggedIn && userRole==='ADMIN'">
     <a href="/">
         <span>Renty Admin</span>
     </a>
@@ -38,27 +41,36 @@
         <button class="nav-button" routerLink="/posts">
             Liste des Annonces
         </button>
-        <button class="nav-button" routerLink="/user/profile">
-            Profil
-        </button>
-        <button class="nav-button" (click)="Logout()">
-            Logout
+        <button class="nav-button account-button" ngbDropdown ngbDropdownToggle>
+            <div class="profile-pic">
+              <img [src]="profilePictureUrl">
+            </div>
+            <div class="profile-info">
+              <p>Compte</p>
+              <div class="profile-menu" ngbDropdownMenu aria-labelledby="dropdownProfile">
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/edit">Profil</button>
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/settings">Paramètres</button>
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/identity">Pièces d'identité</button>
+                <button class="profile-menu-button" ngbDropdownItem routerLink="/user/profile/payment">Méthode de paiement</button>
+                <button class="profile-menu-button" ngbDropdownItem (click)="Logout()">Déconnexion</button>
+              </div>
+            </div>
         </button>
     </div>
 </nav>
 
 <!--Secondary Header-->
-<nav class="secondary-navbar" *ngIf="isLoggedIn">
+<nav class="secondary-navbar" [class.home-sec-nav]="isHome" *ngIf="isLoggedIn">
     <button class="secondary-button" routerLink="/posts/add">
         Créer une Annonce
     </button>
     <button class="secondary-button" routerLink="/posts/owned">
-        Mes annonces
+        Mes Annonces
     </button>
     <button class="secondary-button" routerLink="/rental/owned">
-        Mes locations
+        Mes Locations
     </button>
     <button class="secondary-button" routerLink="/rental/requests">
-        Mes demandes de location
+        Mes Demandes de Location
     </button>
 </nav>

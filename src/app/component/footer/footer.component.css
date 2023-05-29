@@ -1,0 +1,7 @@
+.contact-p{
+    display: flex;
+    align-items: center;
+}
+.contact-p mat-icon{
+    width: 40px;
+}

@@ -20,7 +20,7 @@ export class UserProfileEditComponent implements OnInit {
     role: '',
     profilePicture:'',
   }
-  profilePictureUrl='assets/bg.png'
+  profilePictureUrl='assets/avatar.png'
   selectedFiles: File[] = [];
   selectedFile: File | null = null;
 

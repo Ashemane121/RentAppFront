@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth/auth.service';
 import { ToastrService } from 'ngx-toastr'
-import { Router } from '@angular/router'
+import { Router, NavigationEnd } from '@angular/router'
+import { UploadService } from 'src/app/service/upload/upload.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,15 @@ export class HeaderComponent implements OnInit{
   
   constructor(
     private service: AuthService,
+    private uploadService: UploadService,
     private toastr: ToastrService,
     private router: Router
   ) { }
   isLoggedIn=false
   userRole:any
+  isHome: boolean = false
+  profilePictureUrl='assets/avatar.png'
+  currentUser:any
 
   ngOnInit(): void {
     this.service.refreshComponent$.subscribe(() => {
@@ -35,6 +40,31 @@ export class HeaderComponent implements OnInit{
     } else {
       this.isLoggedIn = false
     }
+
+    this.updateIsHome();
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.updateIsHome();
+      }
+    });
+
+    this.service.GetUserByEmail(sessionStorage.getItem('userEmail'),sessionStorage.getItem('token'))
+    .subscribe((response:any)=>{
+      this.currentUser=response
+      if (this.currentUser.profilePicture) {
+        this.uploadService.GetImageByRef(this.currentUser.profilePicture)
+        .subscribe(
+          (response:any) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(response);
+            reader.onloadend = () => {
+              this.profilePictureUrl = reader.result as string; // save the image URL to a property on the post object
+            };
+          }
+        )
+      }
+    });
   }
 
   Logout() {
@@ -52,6 +82,10 @@ export class HeaderComponent implements OnInit{
 
   goToLogin() {
     this.router.navigate(['/auth']);
+  }
+
+  private updateIsHome() {
+    this.isHome = this.router.url === '/';
   }
 
   CheckSessionStorage() {
