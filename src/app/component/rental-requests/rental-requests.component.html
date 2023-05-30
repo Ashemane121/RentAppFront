@@ -1,12 +1,14 @@
-<h1>Demandes de locations</h1>
-<div class="post-card" *ngFor="let request of myRequests">
-    <div>
-        <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
-    </div>
-    <div>
-        <p>{{ request.status }}</p>
-        <p>{{ request.payment_method }}</p>
-        <p>{{ request.start_date }}</p>
-        <p>{{ request.end_date }}</p>
+<div class="main-container">
+    <h1>Demandes de locations</h1>
+    <div class="request-container" *ngFor="let request of myRequests">
+        <div>
+            <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
+        </div>
+        <div>
+            <p>{{ request.status }}</p>
+            <p>{{ request.payment_method }}</p>
+            <p>{{ request.start_date }}</p>
+            <p>{{ request.end_date }}</p>
+        </div>
     </div>
 </div>

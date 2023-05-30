@@ -1,0 +1,10 @@
+.main-container{
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+.request-container{
+    border: 2px solid rgba(0,0,0,.2);
+    margin: 10px 30px;
+    padding:10px;
+}
