@@ -5,3 +5,18 @@
 .contact-p mat-icon{
     width: 40px;
 }
+
+.social-media-container{
+    display:flex
+}
+
+.social-media-container a{
+    height:25px;
+    width:25px;
+    margin:0px 5px;
+    text-decoration: none;
+}
+.social-media-container a img{
+    width:100%;
+}
+

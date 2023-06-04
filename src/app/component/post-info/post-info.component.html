@@ -43,31 +43,50 @@
         <p>{{ currentPost.conditions }}</p>
     </div>
     <div class="post-info-box post-info-details">
-        <div>
-            <h3><img src="assets/engine.png"> Moteur</h3>
+        <div class="info-detail">
+            <div>
+                <img src="assets/engine.png">
+                <h3>Moteur</h3>
+            </div>
             <p>{{ currentPost.fuel }}</p>
         </div>
-        <div>
-            <h3><img src="assets/gearbox.png"> Boite</h3>
+        <div class="info-detail">
+            <div>
+                <img src="assets/gearbox.png">
+                <h3>Boite</h3>
+            </div>
             <p>{{ currentPost.gearbox }}</p>
         </div>
-        <div>
-            <h3><img src="assets/speedmeter.png"> Compteur</h3>
+        <div class="info-detail">
+            <div>
+                <img src="assets/speedmeter.png">
+                <h3>Compteur</h3>
+            </div>
             <p>{{ currentPost.mileage }}</p>
         </div>
     </div>
     <div class="post-info-box post-info-options">
         <div>
-            <p>Moteur</p>
-            <p>{{ currentPost.fuel }}</p>
-        </div>
-        <div>
-            <p>Boite</p>
-            <p>{{ currentPost.gearbox }}</p>
-        </div>
-        <div>
-            <p>Compteur</p>
-            <p>{{ currentPost.mileage }}</p>
+            <div class="info-option">
+                <mat-icon>check</mat-icon>
+                <p>GPS</p>
+            </div>
+            <div class="info-option">
+                <mat-icon>close</mat-icon>
+                <p>Climatisation</p>
+            </div>
+            <div class="info-option">
+                <mat-icon>close</mat-icon>
+                <p>Bluetooth</p>
+            </div>
+            <div class="info-option">
+                <mat-icon>check</mat-icon>
+                <p>Siège bébé</p>
+            </div>
+            <div class="info-option">
+                <mat-icon>close</mat-icon>
+                <p>Coffre de toit</p>
+            </div>
         </div>
     </div>
     

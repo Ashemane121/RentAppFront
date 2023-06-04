@@ -23,7 +23,7 @@ export class UserProfileIdentityComponent implements OnInit{
     role: '',
     profilePicture:'',
   }
-  profilePictureUrl='assets/bg.png'
+  profilePictureUrl='assets/avatar.png'
   selectedFilesCIN: File[] = [];
   selectedFilesPDC: File[] = [];
   newImagesCIN: any[] = [];

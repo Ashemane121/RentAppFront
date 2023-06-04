@@ -82,6 +82,7 @@ export class RentalCreateComponent implements OnInit{
   isMarkedDisabled:any
   rentedDates: any[] = []
   currentPost: any
+  cost=0
 
   ngOnInit() {
     this.postService.GetPostById(this.postId).subscribe((response:any) => {
@@ -111,6 +112,7 @@ export class RentalCreateComponent implements OnInit{
       this.toDate = null
       this.fromDate = date
     }
+    this.updateCost()
   }
   isStart(date: NgbDate): boolean {
     return this.fromDate && date.equals(this.fromDate);
@@ -182,6 +184,19 @@ export class RentalCreateComponent implements OnInit{
   refreshDates() {
     this.fromDate=null
 	  this.toDate=null
+    this.updateCost()
+  }
+  updateCost(){
+    if (this.fromDate && this.toDate) {
+      //get total cost
+      const startDate = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day)
+      const endDate = new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day)
+      const millisecondsPerDay = 24 * 60 * 60 * 1000
+      const timeDifference = endDate.getTime() - startDate.getTime()
+      this.cost = this.currentPost.price * (Math.round(timeDifference / millisecondsPerDay) + 1)
+    } else {
+      this.cost = 0
+    }
   }
 
   AddRequest() {

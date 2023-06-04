@@ -1,14 +1,27 @@
 <div class="main-container">
     <h1>Demandes de locations</h1>
-    <div class="request-container" *ngFor="let request of myRequests">
-        <div>
-            <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
+    <div class="request-container row" *ngFor="let request of myRequests">
+        <div class="col-12 col-md-4 post-image">
+            <img [src]="request.imageUrl">
         </div>
-        <div>
-            <p>{{ request.status }}</p>
-            <p>{{ request.payment_method }}</p>
-            <p>{{ request.start_date }}</p>
-            <p>{{ request.end_date }}</p>
+        <div class="col-12 col-md-8">
+            <h2>{{ request.post.brand }} {{ request.post.model }}</h2>
+            <div class="status-container" style="color:goldenrod" *ngIf="request.status==='Pending'">
+                <mat-icon>priority_high</mat-icon>
+                <p>En cours</p>
+            </div>
+            <div class="status-container" style="color:red" *ngIf="request.status==='Rejected'">
+                <mat-icon>close</mat-icon>
+                <p>Rejeté</p>
+            </div>
+            <div class="status-container" style="color:green" *ngIf="request.status==='Approuved'">
+                <mat-icon>check</mat-icon>
+                <p>Approuvé</p>
+            </div>
+            <p>Mode de paiement : {{ request.payment_method }}</p>
+            <p>Prix total : {{ request.cost }}dt</p>
+            <p>Date de début : {{ request.start_date }}</p>
+            <p>Date de fin : {{ request.end_date }}</p>
         </div>
     </div>
 </div>

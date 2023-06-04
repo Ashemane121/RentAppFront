@@ -78,6 +78,9 @@
   </div>
   
   <div class="side-bar">
+    <div class="side-bar-info">
+      Trouvez le véhicule que vous voulez en sélectionnant les caractéristiques souhaitées. 
+    </div>
     <form>
       <h3>Marque</h3>
       <div class="checkboxes">
@@ -107,20 +110,19 @@
   </div>
   <div class="posts-list">
     <div class="post-card" *ngFor="let post of filteredPosts" [routerLink]="['/posts/info', post.id_post]">
-      <div class="post-card-content">
-        <div class="post-card-img">
-          <img [src]="post.imageUrl" alt="Post Image">
-        </div>
-        <div class="post-card-info">
-          <h2>{{ post.brand }} {{ post.model }}</h2>
-          <div class="post-card-details">
-            <div class="post-card-text">
-              <p>Aucune évaluation</p>
-            </div>
-            <div class="post-card-price">
-              <h3>{{ post.price }}dt</h3>
-              <p>/jour</p>
-            </div>
+      <div class="post-card-img">
+        <img [src]="post.imageUrl" alt="Post Image">
+      </div>
+      <div class="post-card-info">
+        <h2>{{ post.brand }} {{ post.model }}</h2>
+        <div class="post-card-details">
+          <div class="post-card-text">
+            <p *ngIf="post.rate"><ngb-rating [rate]="1" [max]="1"></ngb-rating>{{ post.rate }}</p>
+            <p *ngIf="!post.rate"><ngb-rating [rate]="1" [max]="1"></ngb-rating>Pas encore d'évaluations</p>
+          </div>
+          <div class="post-card-price">
+            <h3>{{ post.price }}dt</h3>
+            <p>/jour</p>
           </div>
         </div>
       </div>

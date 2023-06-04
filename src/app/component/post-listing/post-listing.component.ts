@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/service/post/post.service';
 import { UploadService } from 'src/app/service/upload/upload.service';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { RentalService } from 'src/app/service/rental/rental.service';
 
 @Component({
   selector: 'app-post-listing',
@@ -12,6 +13,7 @@ export class PostListingComponent implements OnInit{
   constructor(
     private postService: PostService,
     private uploadService: UploadService,
+    private rentalService: RentalService,
     private calendar: NgbCalendar, public formatter: NgbDateParserFormatter
   ) {	
 		//this.fromDate = calendar.getNext(calendar.getToday(), 'd', 1)
@@ -102,6 +104,18 @@ export class PostListingComponent implements OnInit{
           reader.onloadend = () => {
             post.imageUrl = reader.result as string; // save the image URL to a property on the post object
           };
+          post.ratings=[]
+          //get post rental dates
+          this.rentalService.GetRentalsByPostId(post.id_post)
+          .subscribe((response:any) => {
+            response.forEach((rental:any) => {              
+              if (rental.rating) {
+                post.ratings.push(rental.rating)
+              }
+            })
+            const totalStars = post.ratings.reduce((sum:any, rating:any) => sum + rating.stars, 0)
+            post.rate = totalStars / post.ratings.length
+          })
           
         })
       })

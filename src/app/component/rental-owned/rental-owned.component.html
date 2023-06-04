@@ -1,14 +1,38 @@
-<h1>Locations approuvés</h1>
-<div class="post-card" *ngFor="let rental of myRentals">
-    <div>
-        <h2>{{ rental.request.post.brand }} {{ rental.request.post.model }}</h2>
+<div class="main-container">
+    <h1>Locations approuvés</h1>
+    <div class="rental-container row" *ngFor="let rental of myRentals">
+        <div class="col-12 col-md-4 post-image">
+            <img [src]="rental.request.imageUrl">
+            <div class="rental-status-container">
+                <p>statut : {{ rental.status }}</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <div>
+                <h2>{{ rental.request.post.brand }} {{ rental.request.post.model }}</h2>
+            </div>
+            <div>
+                <p>Mode de paiement : {{ rental.request.payment_method }}</p>
+                <p>Prix total : {{ rental.cost }}dt</p>
+                <p>Date de début : {{ rental.request.start_date }}</p>
+                <p>Date de fin : {{ rental.request.end_date }}</p>
+            </div>
+            <div class="button-container">
+                <button class="rental-button" color="basic" (click)="openRental(rental.id_rental)">
+                    <mat-icon>comment</mat-icon>
+                    <p>Ajouter un commentaire</p>
+                </button>   
+                <button class="rental-button" color="basic" (click)="openClaim(rental.id_rental)">
+                    <mat-icon>error</mat-icon>
+                    <p>Envoyer une réclamation</p>
+                </button>
+            </div>
+        </div>
+        
+        
+        
+            
     </div>
-    <div>
-        <p>{{ rental.request.status }}</p>
-        <p>{{ rental.request.payment_method }}</p>
-        <p>{{ rental.request.start_date }} -> {{ rental.request.end_date }}</p>
-    </div>
-    
-    <button class="btn btn-primary" color="basic" (click)="openRental(rental.id_rental)">Afficher</button>   
-    <button class="btn btn-secondary" color="basic" (click)="openClaim(rental.id_rental)">Réclamation</button>    
+
 </div>
+
