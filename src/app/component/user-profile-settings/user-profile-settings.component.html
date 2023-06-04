@@ -14,9 +14,15 @@
         <label for="confirm_pw">Confirmer Mot de Passe</label>
         <input type="text" class="form-control" id="confirm_pw" formControlName="confirm_pw">
       </div>
-      <button type="submit" class="btn btn-primary">Modifier</button>
+      <div class="pw-forget-container">
+        <a href="#"><mat-icon>info</mat-icon>Mot de passe oublié</a>
+      </div>
+      
+      <button type="submit" class="submit-button">Modifier votre mot de passe</button>
     </form>
   </div>
+
+  <div class="seperator"></div>
 
   <div>
     <h2>Changer d'adresse email</h2>
@@ -33,8 +39,20 @@
         <label for="pw">Mot de Passe</label>
         <input type="text" class="form-control" id="pw" formControlName="pw">
       </div>
-      <button type="submit" class="btn btn-primary">Modifier</button>
+      <div class="pw-forget-container">
+        <a href="#"><mat-icon>info</mat-icon>Mot de passe oublié</a>
+      </div>
+
+      <button type="submit" class="submit-button">Modifier votre adresse email</button>
     </form>
+  </div>
+  
+  <div class="seperator"></div>
+
+  <div>
+    <h2>Supprimer votre compte</h2>
+    <p>Cette action est irréversible. Si vous êtes propriétaire d'une voiture, veuillez vous assurer que vous n'avez pas de transferts à venir et veuillez exporter votre historique de paiement.</p>
+    <button class="delete-button">Supprimer votre compte</button>
   </div>
 </div>
 

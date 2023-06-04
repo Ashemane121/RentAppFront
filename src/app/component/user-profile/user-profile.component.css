@@ -4,8 +4,7 @@
     display: grid;
     grid-template-columns: 2fr 7fr;
     grid-template-rows: 100%;
-    height: 100vh;
-
+    height: fit-content;
 }
 
 .sidebar{

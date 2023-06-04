@@ -1,32 +1,62 @@
 <div class="main-container">
-  <div>
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" class="form-control" id="firstname" formControlName="firstname">
-      </div>
-      <div class="form-group">
-        <label for="lastname">Last Name</label>
-        <input type="text" class="form-control" id="lastname" formControlName="lastname">
-      </div>
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="text" class="form-control" id="phone" formControlName="phone">
-      </div>
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" formControlName="address">
-      </div>
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
+  <div class="info-box">
+    Certaines de ces informations sont publiques et d’autres sont protégées.
+    Les administrateurs accéderont à votre profil lorsque vous enverrez une demande de réservation. 
+    De même si vous publiez une annonce de voiture. 
+    
   </div>
   
-  <div>
+  
+  <h1>Photo de profil</h1>
+  <div class="row">
+    <div class="col-md-6 col-12">
       <div class="profile-pic-container">
         <img [src]="profilePictureUrl" alt="profile picture">
       </div>
-      <input type='file' (change)="onSelectFile($event)">
-      <button (click)="changeProfilePic()" class="btn btn-primary">Modifier</button>
-      <p>{{ currentUser.profilePicture }}</p>
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="pic-input-container">
+        <label for="inputTag" class="pic-input-label">
+          Sélectionnez une image
+          <input id="inputTag" type='file' (change)="onSelectFile($event)">
+        </label>
+        <button (click)="changeProfilePic()" class="submit-button">Modifier la photo de profil</button>
+      </div>
+      
+    </div>
+      
+      
+      
   </div>
+
+  <div class="seperator"></div>
+
+  <h1>Informations générales</h1>
+  <div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="row xx">
+        <div class="form-group col-12 col-md-6 fn-label">
+          <label for="firstname">Prénom</label>
+          <input type="text" class="form-control" id="firstname" formControlName="firstname">
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label for="lastname">Nom</label>
+          <input type="text" class="form-control" id="lastname" formControlName="lastname">
+        </div>
+        <div class="form-group col-12">
+          <label for="phone">Numéro de téléphone</label>
+          <input type="text" class="form-control" id="phone" formControlName="phone">
+        </div>
+        <div class="form-group col-12">
+          <label for="address">Adresse</label>
+          <input type="text" class="form-control" id="address" formControlName="address">
+        </div>
+
+      </div>
+      
+      
+      <button type="submit" class="submit-button">Sauvegarder les changements</button>
+    </form>
+  </div>
+
 </div>
